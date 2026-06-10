@@ -349,3 +349,34 @@ body { margin: 0; background: var(--bg); color: var(--text);
 .filter-chip b { margin-left: 6px; }
 .queue-item.closed { opacity: .75; }
 .tag.done { background: var(--panel2); color: var(--muted); border: 1px solid var(--border); }
+
+/* Graph analytics */
+.analytics { display: flex; flex-direction: column; gap: 16px; }
+.graph-bar { gap: 12px; }
+.graph-search { background: var(--panel2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 12px; font-size: 14px; width: 240px; }
+.graph-bar select { background: var(--panel2); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font-size: 13.5px; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; }
+.legend-item { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; color: var(--text); cursor: pointer; }
+.legend-item.off { opacity: .4; }
+.legend-item input { display: none; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.graph-panel { overflow: hidden; }
+.graph-svg { width: 100%; height: 640px; display: block; cursor: grab; touch-action: none; }
+.graph-svg:active { cursor: grabbing; }
+.gnode { cursor: pointer; }
+.gnode.dim { pointer-events: none; }
+.gnode circle:hover { stroke: var(--accent); stroke-width: 2.5; }
+.gnode-label { font-size: 10.5px; fill: var(--muted); font-family: ui-monospace, monospace; pointer-events: none; }
+.charts-row .chart-svg { width: 100%; height: auto; }
+.chart-label { font-size: 10px; fill: var(--muted); }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
+.chart-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; }
+
+/* Markdown tables (chat / diagnosis) */
+.md-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 8px 0; }
+.md-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 5px 8px;
+  border-bottom: 1px solid var(--border); background: var(--bg); }
+.md-table td { padding: 5px 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.md-table tr:last-child td { border-bottom: none; }

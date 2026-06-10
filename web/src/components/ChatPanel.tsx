@@ -43,12 +43,12 @@ export function ChatPanel({ onDetail, known }: { onDetail?: (kind: DetailKind, i
     }
   }
 
-  if (!open) return <button className="chat-fab" onClick={() => setOpen(true)} title="Ask the EBS AMS expert">Ask the expert</button>;
+  if (!open) return <button className="chat-fab" onClick={() => setOpen(true)} title="Ask Alice, the EBS AMS expert">Ask Alice</button>;
 
   return (
     <div className="chat-panel">
       <div className="chat-head">
-        <div><b>AMS Expert Assistant</b><span className="chat-sub">full estate scope</span></div>
+        <div><b>Ask Alice</b><span className="chat-sub">EBS AMS expert · full estate scope</span></div>
         <button className="chat-x" onClick={() => setOpen(false)}>×</button>
       </div>
       <div className="chat-body">
@@ -74,7 +74,7 @@ export function ChatPanel({ onDetail, known }: { onDetail?: (kind: DetailKind, i
         <div ref={endRef} />
       </div>
       <form className="chat-input" onSubmit={e => { e.preventDefault(); send(input); }}>
-        <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask the expert…" disabled={busy} />
+        <input value={input} onChange={e => setInput(e.target.value)} placeholder="Ask Alice…" disabled={busy} />
         <button type="submit" disabled={busy || !input.trim()}>Send</button>
       </form>
     </div>

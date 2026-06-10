@@ -23,20 +23,44 @@ function inline(text: string, opts: Opts): ReactNode[] {
   });
 }
 
+function splitRow(line: string): string[] {
+  return line.replace(/^\|/, "").replace(/\|$/, "").split("|").map(c => c.trim());
+}
+const isTableRow = (l: string) => l.startsWith("|") && l.includes("|", 1);
+const isSeparatorRow = (l: string) => /^\|?[\s:|-]+\|?$/.test(l) && l.includes("-");
+
 export function Markdown({ text, onDetail, known }: { text: string } & Opts) {
   const opts: Opts = { onDetail, known };
   const lines = text.replace(/\r/g, "").split("\n");
   const out: ReactNode[] = [];
-  let ul: string[] = [], ol: string[] = [], para: string[] = [];
+  let ul: string[] = [], ol: string[] = [], para: string[] = [], tbl: string[][] = [];
 
   const flushUl = () => { if (ul.length) { out.push(<ul key={`ul-${out.length}`}>{ul.map((b, i) => <li key={i}>{inline(b, opts)}</li>)}</ul>); ul = []; } };
   const flushOl = () => { if (ol.length) { out.push(<ol key={`ol-${out.length}`}>{ol.map((b, i) => <li key={i}>{inline(b, opts)}</li>)}</ol>); ol = []; } };
   const flushPara = () => { if (para.length) { out.push(<p key={`p-${out.length}`}>{inline(para.join(" "), opts)}</p>); para = []; } };
-  const flushAll = () => { flushUl(); flushOl(); flushPara(); };
+  const flushTbl = () => {
+    if (tbl.length) {
+      const [head, ...body] = tbl;
+      out.push(
+        <table key={`t-${out.length}`} className="md-table">
+          <thead><tr>{head.map((c, i) => <th key={i}>{inline(c, opts)}</th>)}</tr></thead>
+          <tbody>{body.map((r, i) => <tr key={i}>{r.map((c, j) => <td key={j}>{inline(c, opts)}</td>)}</tr>)}</tbody>
+        </table>
+      );
+      tbl = [];
+    }
+  };
+  const flushAll = () => { flushUl(); flushOl(); flushPara(); flushTbl(); };
 
   for (const raw of lines) {
     const line = raw.trim();
     if (!line) { flushAll(); continue; }
+    if (isTableRow(line)) {
+      flushUl(); flushOl(); flushPara();
+      if (!isSeparatorRow(line)) tbl.push(splitRow(line));
+      continue;
+    }
+    flushTbl();
     if (/^---+$/.test(line)) { flushAll(); out.push(<hr key={`hr-${out.length}`} />); continue; }
     const h = line.match(/^(#{2,4})\s+(.*)$/);
     if (h) { flushAll(); out.push(<h4 key={`h-${out.length}`}>{inline(h[2], opts)}</h4>); continue; }

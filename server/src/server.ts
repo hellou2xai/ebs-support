@@ -196,6 +196,50 @@ app.get("/api/rca/:id", (req, res) => {
 // Observability: queries, tokens, cost.
 app.get("/api/observability", (_req, res) => res.json(usageSummary()));
 
+// Knowledge graph for the analytics view. Incident nodes carry live metadata.
+app.get("/api/graph", (_req, res) => {
+  const incMeta = new Map(db.incidents.map(i => [i.INCIDENT_NUMBER, i]));
+  const nodes = db.kgNodes
+    .filter(n => n.NODE_TYPE !== "Item") // items are isolated in the current graph
+    .map(n => {
+      const m = n.NODE_TYPE === "Incident" ? incMeta.get(n.NODE_ID) : undefined;
+      return {
+        id: n.NODE_ID, type: n.NODE_TYPE, label: n.LABEL, attrs: n.ATTRIBUTES,
+        stream: m?.VALUE_STREAM ?? "", module: m?.EBS_MODULE ?? "",
+        priority: m?.PRIORITY ?? "", state: m?.STATE ?? "",
+        known: n.NODE_TYPE !== "Incident" || !!m,
+      };
+    });
+  const ids = new Set(nodes.map(n => n.id));
+  const edges = db.kgEdges
+    .filter(e => ids.has(e.SOURCE_NODE) && ids.has(e.TARGET_NODE))
+    .map(e => ({ source: e.SOURCE_NODE, target: e.TARGET_NODE, type: e.EDGE_TYPE }));
+  res.json({ nodes, edges });
+});
+
+// Trend analytics over the incident estate.
+app.get("/api/analytics", (_req, res) => {
+  const byMonth: Record<string, Record<string, number>> = {};
+  const byModule: Record<string, number> = {};
+  const exposureByMonth: Record<string, number> = {};
+  let recurring = 0;
+  for (const i of db.incidents) {
+    const mo = (i.OPENED_AT || "").slice(0, 7);
+    if (mo) {
+      (byMonth[mo] ??= {})[i.VALUE_STREAM] = (byMonth[mo][i.VALUE_STREAM] || 0) + 1;
+      if (i.INVOICE_AMOUNT) exposureByMonth[mo] = (exposureByMonth[mo] || 0) + Number(i.INVOICE_AMOUNT);
+    }
+    byModule[i.EBS_MODULE] = (byModule[i.EBS_MODULE] || 0) + 1;
+    if (i.RECURRING_FLAG === "Y") recurring++;
+  }
+  res.json({
+    total: db.incidents.length, recurring,
+    open: db.incidents.filter(i => i.STATE !== "Closed").length,
+    streams: [...new Set(db.incidents.map(i => i.VALUE_STREAM))],
+    byMonth, byModule, exposureByMonth,
+  });
+});
+
 // Pre-start insights for one incident (computed before any agent runs).
 app.get("/api/incident/:id/insights", (req, res) => {
   try { res.json(computeInsights(req.params.id)); }

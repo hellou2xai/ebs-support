@@ -8,6 +8,7 @@ import { IncidentDetail } from "./components/IncidentDetail";
 import { DashboardView } from "./components/Dashboard";
 import { AgentsDashboard } from "./components/AgentsDashboard";
 import { ObservabilityView } from "./components/Observability";
+import { AnalyticsView } from "./components/Analytics";
 import { ChatPanel } from "./components/ChatPanel";
 import { DetailModal } from "./components/DetailModal";
 
@@ -15,7 +16,7 @@ const ROLES = [
   "L1 Support Analyst", "L2 Support Engineer", "L3 SME",
   "Finance Controller", "Change Approver", "AMS Service Manager",
 ];
-type Tab = "home" | "queue" | "agents" | "dashboard" | "observability";
+type Tab = "home" | "queue" | "agents" | "dashboard" | "analytics" | "observability";
 
 export default function App() {
   const [authed, setAuthed] = useState(() => localStorage.getItem("alice-auth") === "1");
@@ -82,6 +83,7 @@ export default function App() {
         <button className={tab === "queue" ? "active" : ""} onClick={() => setTab("queue")}>Incident queue</button>
         <button className={tab === "agents" ? "active" : ""} onClick={() => setTab("agents")}>Agent pipeline</button>
         <button className={tab === "dashboard" ? "active" : ""} onClick={() => setTab("dashboard")}>Track dashboard</button>
+        <button className={tab === "analytics" ? "active" : ""} onClick={() => setTab("analytics")}>Graph analytics</button>
         <button className={tab === "observability" ? "active" : ""} onClick={() => setTab("observability")}>Observability</button>
       </nav>
 
@@ -97,6 +99,7 @@ export default function App() {
       )}
       {tab === "agents" && <AgentsDashboard onDetail={openDetail} />}
       {tab === "dashboard" && <DashboardView dash={dash} onDetail={openDetail} />}
+      {tab === "analytics" && <AnalyticsView onDetail={openDetail} />}
       {tab === "observability" && <ObservabilityView />}
 
       <ChatPanel onDetail={openDetail} known={knownIds} />

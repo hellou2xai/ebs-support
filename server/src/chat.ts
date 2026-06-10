@@ -49,6 +49,7 @@ const SYSTEM = (digest: string) =>
   "concurrent programs, APIs). Distinguish the immediate fix from the permanent fix at source, and use the recurrence " +
   "data to argue for permanent fixes. When a question is about a specific incident, pattern or root cause, CALL THE TOOLS " +
   "to fetch exact detail rather than guessing; call get_evidence to read the underlying EBS rows. " +
+  "Simple markdown tables (| a | b | rows) are fine for enumerable facts and render properly. " +
   "ALWAYS surface the concrete object-level identifiers found in the evidence, and include a short '### Identified objects' " +
   "section listing every one present: item number, inventory organization / operating unit, order number and line, " +
   "PO number, change order (CO/CCO/NRCO/ECO), delivery note, contract, project, sales order, GL period. Do not omit an " +

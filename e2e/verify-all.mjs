@@ -109,6 +109,29 @@ if (rcaInModal) {
 }
 await new Promise(r => setTimeout(r, 300));
 
+// 5c. Graph analytics tab
+for (const t of await page.$$(".tabs button")) {
+  if ((await t.evaluate(el => el.textContent)).includes("Graph analytics")) { await t.click(); break; }
+}
+await page.waitForSelector(".graph-svg", { timeout: 15000 });
+await new Promise(r => setTimeout(r, 1500)); // layout compute
+const circles = (await page.$$(".graph-svg .gnode circle")).length;
+ok("graph renders nodes", circles > 100, `${circles} nodes drawn`);
+const chartRects = (await page.$$(".chart-svg rect")).length;
+ok("trend charts render", chartRects > 10, `${chartRects} bars`);
+// click an incident node (blue) -> resolution modal
+const clicked = await page.evaluate(() => {
+  const nodes = [...document.querySelectorAll(".graph-svg .gnode")];
+  const target = nodes.find(n => (n.querySelector("title")?.textContent || "").startsWith("Incident: INC09"));
+  if (target) { target.dispatchEvent(new MouseEvent("click", { bubbles: true })); return target.querySelector("title").textContent.split("\n")[0]; }
+  return null;
+});
+await new Promise(r => setTimeout(r, 900));
+const graphModal = (await page.$(".modal-body")) ? await page.$eval(".modal-body", el => el.innerText.trim().length) : 0;
+ok("clicking incident node opens resolution", graphModal > 200, `${clicked} -> ${graphModal} chars`);
+if (await page.$(".modal-x")) await page.click(".modal-x");
+await new Promise(r => setTimeout(r, 300));
+
 // 6. Persona switch lands on persona home
 await page.select(".role-select select", "Finance Controller");
 await new Promise(r => setTimeout(r, 800));

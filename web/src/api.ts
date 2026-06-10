@@ -67,6 +67,20 @@ export async function getPersona(role: string): Promise<any> {
   return r.json();
 }
 
+export interface GraphNode {
+  id: string; type: string; label: string; attrs: string;
+  stream: string; module: string; priority: string; state: string; known: boolean;
+}
+export interface GraphEdge { source: string; target: string; type: string; }
+export async function getGraph(): Promise<{ nodes: GraphNode[]; edges: GraphEdge[] }> {
+  const r = await fetch("/api/graph");
+  return r.json();
+}
+export async function getAnalytics(): Promise<any> {
+  const r = await fetch("/api/analytics");
+  return r.json();
+}
+
 // Chat over SSE-on-POST: read the streamed body and emit each event.
 export async function chat(messages: ChatMsg[], onEvent: (ev: ChatEvent) => void): Promise<void> {
   const res = await fetch("/api/chat", {
