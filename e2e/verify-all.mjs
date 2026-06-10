@@ -76,6 +76,39 @@ const rcaLen = await page.$eval(".modal-body", el => el.innerText.trim().length)
 ok("rca modal has content", rcaLen > 200, `${rcaLen} chars`);
 await page.click(".modal-x");
 
+// 5b. Nested modal navigation (the blank-page bug path):
+// open a resolution modal from the persona home, then click RCA inside it,
+// then click a pattern chip inside the RCA view.
+for (const t of await page.$$(".tabs button")) {
+  if ((await t.evaluate(el => el.textContent)).includes("home")) { await t.click(); break; }
+}
+await page.waitForSelector(".pat-table a.inc-link", { timeout: 8000 });
+await page.click(".pat-table a.inc-link"); // first incident in persona table -> resolution modal
+await page.waitForSelector(".modal-body", { timeout: 5000 });
+await new Promise(r => setTimeout(r, 700));
+const resLen = await page.$eval(".modal-body", el => el.innerText.trim().length);
+ok("resolution modal opens from persona home", resLen > 200, `${resLen} chars`);
+const rcaInModal = await page.$(".modal-body .kv .inc-link");
+if (rcaInModal) {
+  await rcaInModal.click();
+  await new Promise(r => setTimeout(r, 900));
+  const stillAlive = !!(await page.$(".modal-body"));
+  const nestedLen = stillAlive ? await page.$eval(".modal-body", el => el.innerText.trim().length) : 0;
+  const appAlive = !!(await page.$(".tabs"));
+  ok("RCA link inside modal opens RCA (no blank page)", stillAlive && appAlive && nestedLen > 150, `${nestedLen} chars, app alive=${appAlive}`);
+  const patChip = await page.$(".modal-body .inc-chip.pat");
+  if (patChip) {
+    await patChip.click();
+    await new Promise(r => setTimeout(r, 900));
+    const patNested = (await page.$(".modal-body")) ? await page.$eval(".modal-body", el => el.innerText.trim().length) : 0;
+    ok("pattern chip inside RCA modal works", patNested > 150, `${patNested} chars`);
+  }
+  if (await page.$(".modal-x")) await page.click(".modal-x");
+} else {
+  ok("RCA link inside modal opens RCA (no blank page)", false, "no link found in modal");
+}
+await new Promise(r => setTimeout(r, 300));
+
 // 6. Persona switch lands on persona home
 await page.select(".role-select select", "Finance Controller");
 await new Promise(r => setTimeout(r, 800));

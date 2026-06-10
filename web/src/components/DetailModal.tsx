@@ -55,7 +55,7 @@ function Objects({ objects }: { objects: { label: string; value: string }[] }) {
 function IncList({ ids, onDetail, known }: { ids: string[]; onDetail: Props["onDetail"]; known: Set<string> }) {
   return (
     <div className="inc-chips">
-      {ids.map(n => {
+      {(ids ?? []).map(n => {
         const k = known.has(n);
         return <a key={n} className={`inc-chip ${k ? "" : "ext"}`} onClick={() => k && onDetail("resolution", n)}>{n}</a>;
       })}
@@ -94,7 +94,7 @@ function Resolution({ d, onDetail, known }: { d: any } & Pick<Props, "onDetail" 
 
       <section className="m-card timeline">
         <h4>Agent sequence</h4>
-        {d.agents.map((a: any) => (
+        {(d.agents ?? []).map((a: any) => (
           <div className="tl-row" key={a.id}>
             <span className={`tl-dot ${a.status}`} />
             <span className="tl-name">{a.name}</span>
@@ -116,7 +116,7 @@ function Resolution({ d, onDetail, known }: { d: any } & Pick<Props, "onDetail" 
 
       <section className="m-card">
         <h4>Next steps</h4>
-        <ul className="md">{d.next_steps.map((s: string, i: number) => <li key={i}>{s}</li>)}</ul>
+        <ul className="md">{(d.next_steps ?? []).map((s: string, i: number) => <li key={i}>{s}</li>)}</ul>
       </section>
     </>
   );
@@ -173,7 +173,7 @@ function Rca({ d, onDetail, known }: { d: any } & Pick<Props, "onDetail" | "know
       <Objects objects={d.objects} />
       <section className="m-card">
         <h4>Patterns and incidents</h4>
-        <div className="inc-chips">{d.patterns.map((p: string) => <a key={p} className="inc-chip pat" onClick={() => onDetail("pattern", p)}>{p}</a>)}</div>
+        <div className="inc-chips">{(d.patterns ?? []).map((p: string) => <a key={p} className="inc-chip pat" onClick={() => onDetail("pattern", p)}>{p}</a>)}</div>
         <div style={{ marginTop: 8 }}><IncList ids={d.example_incidents} onDetail={onDetail} known={known} /></div>
       </section>
     </>

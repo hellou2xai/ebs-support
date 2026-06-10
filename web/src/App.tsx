@@ -100,7 +100,7 @@ export default function App() {
       {tab === "observability" && <ObservabilityView />}
 
       <ChatPanel onDetail={openDetail} known={knownIds} />
-      {detail && <DetailModal kind={detail.kind} id={detail.id} onDetail={openDetail} known={knownIds} onClose={() => setDetail(null)} />}
+      {detail && <DetailModal key={`${detail.kind}-${detail.id}`} kind={detail.kind} id={detail.id} onDetail={openDetail} known={knownIds} onClose={() => setDetail(null)} />}
     </div>
   );
 }
