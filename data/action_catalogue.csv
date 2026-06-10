@@ -1,0 +1,13 @@
+ACTION_ID,ACTION_NAME,EBS_MODULE,EBS_PROGRAM_OR_API,DESCRIPTION,RISK_LEVEL,ENVIRONMENT_ALLOWED,REQUIRES_APPROVAL,REVERSIBLE,PATTERN_ID
+ACT-01,Replay Change Order Interface,ITEM_MDM,CO/NRCO interface program,Re-run the PD-to-EBS change-order interface for a failed CO,Low,"PROD,UAT,DEV",N,Y,PAT-REV-SYNC
+ACT-02,Apply Revision Data Fix,INV,DFX-REVSYNC-01,Align EBS revision to PD after a failed CO interface,Medium,"PROD,UAT,DEV",Y,Y,PAT-REV-SYNC
+ACT-03,Release Order Hold,ONT,OE_Holds_PUB.Release_Holds,Release a rule-matched config-exception hold once cleared,Low,"PROD,UAT,DEV",N,Y,PAT-HOLD
+ACT-04,Clear RCV_INTERFACE and reprocess,INV/PO,SBM-090351 + Receiving Transaction Processor,Clear stuck receiving rows and reprocess,Medium,"PROD,UAT,DEV",Y,Y,PAT-RCV
+ACT-05,Replay BluJay Transmission,WSH,EBS-BluJay interface replay,Replay a failed EBS-to-BluJay delivery transmission,Low,"PROD,UAT,DEV",N,Y,PAT-BLUJAY
+ACT-06,Unlink DropShip PO,ONT/PO,DFX-DROPSHIP-01,Unlink the PO left after a DropShip cancellation,Medium,"PROD,UAT,DEV",Y,Y,PAT-DROPSHIP
+ACT-07,Resubmit CPQ Order,ONT,Order Import (OEOIMP),Resubmit a CPQ-sourced order after a config fix,Low,"PROD,UAT,DEV",N,Y,PAT-CPQ
+ACT-08,Republish Revenue Obligation,PTC,DFX-OBLIG-01,Republish a stuck obligation after finance approval,Medium,"PROD,UAT,DEV",Y,N,PAT-OBLIG
+ACT-09,Controlled SO Reopen,ONT,OE header reopen (audited),Reopen a closed SO header for audit changes,Medium,"PROD,UAT,DEV",Y,Y,PAT-SOREOPEN
+ACT-10,Re-run AutoInvoice,AR,RAXMTR (AutoInvoice Master Program),Resubmit AutoInvoice after correcting the rejected line or AutoAccounting,Medium,"PROD,UAT,DEV",Y,N,PAT-AR-AUTOINV
+ACT-11,Resubmit Payables Open Interface,AP,APXIIMPT (Payables Open Interface Import),Re-import an AP invoice after the PO/receipt or setup is corrected,Medium,"PROD,UAT,DEV",Y,N,PAT-AP-IMPORT
+ACT-12,Release AP Invoice Hold,AP,AP_HOLDS release (after approval),Release a price/matching hold once the price difference is approved,Medium,"PROD,UAT,DEV",Y,Y,PAT-AP-HOLD

@@ -1,0 +1,10 @@
+SUPPLIER_NAME,TIER,CATEGORY,SINGLE_SOURCE
+Cellcore Battery Systems,Critical-Component,Batteries,Y
+Volt Semiconductors,Critical-Component,Power semiconductors,Y
+CapaciTech Components,Critical-Component,Capacitors,N
+PrecisionMag Magnetics,Strategic,Transformers and inductors,N
+ThermaFlow Cooling,Strategic,Cooling fans,N
+CircuitForm PCB,Strategic,Printed circuit boards,Y
+SteelForm Enclosures,Approved,Sheet metal,N
+Apex Fasteners,Approved,Hardware,N
+Lumen Wire and Cable,Approved,Cabling,N

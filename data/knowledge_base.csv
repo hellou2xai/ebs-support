@@ -1,0 +1,12 @@
+KB_ID,VALUE_STREAM,TITLE,RESOLUTION_SUMMARY,PATTERN_ID
+KB-01,Item-MDM,Revision stuck at 00 after CO not interfaced,"Confirm CO/NRCO interface status. If NOT_INTERFACED, replay the interface; if Item Workbench was used afterwards, apply DFX-REVSYNC-01 then re-run the CO interface.",PAT-REV-SYNC
+KB-02,Item-MDM,CCB report revision-sequence error,"New revision must be equal or higher than the old revision. Reject the CO, move to pending, set a greater revision, re-push to submitted and CCB.",PAT-CCB-REV
+KB-03,Item-MDM,CCO created with no revised items,Verify the CO number and that revised items exist under it. Recreate the CCO from the correct CO; check the CCB report for API revision errors.,PAT-CCO
+KB-04,QTD,Order lines cannot progress (holds),List active holds via OE_ORDER_HOLDS_ALL. Release config-exception holds once configuration validates and PR/PO conditions clear (ACT-03).,PAT-HOLD
+KB-05,PTM,"Receiving stuck, quantity 0",Records stuck in RCV_INTERFACE. Apply the catalogued clear-and-reprocess fix (SBM-090351) and re-run the Receiving Transaction Processor.,PAT-RCV
+KB-06,QTD,DropShip data corruption after cancellation,Root cause is the PO not unlinked after DropShip cancellation. Apply DFX-DROPSHIP-01 and verify referential integrity.,PAT-DROPSHIP
+KB-07,PTM,EBS deliveries not reaching BluJay,Check the EBS-BluJay transmission status. Replay failed messages (ACT-05); escalate if mapping/endpoint config is wrong.,PAT-BLUJAY
+KB-08,PTC,Obligation error blocks revenue recognition,Check obligation publishing and contingencies. Correct functional setup; republish via DFX-OBLIG-01 with finance approval.,PAT-OBLIG
+KB-09,PTC,AR AutoInvoice rejection (no revenue account / tax / period),"Read RA_INTERFACE_ERRORS_ALL. Fix AutoAccounting or the line, open the GL period if needed, then re-run AutoInvoice (RAXMTR). Prioritise high-value invoices and strategic customers.",PAT-AR-AUTOINV
+KB-10,PTP,AP invoice import / matching failure,"Check AP_INTERFACE_REJECTIONS. Confirm the goods receipt and PO match within tolerance, correct, then resubmit Payables Open Interface Import. Flag critical and single-source suppliers.",PAT-AP-IMPORT
+KB-11,PTP,AP invoice on price hold,"Compare invoice unit price to the PO price agreement. Correct the PO price or get the price difference approved, then release the hold.",PAT-AP-HOLD

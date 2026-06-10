@@ -1,0 +1,18 @@
+PATTERN_ID,VALUE_STREAM,FAILURE_SIGNATURE,OCCURRENCE_COUNT,AUTO_RESOLVABLE,ROOT_CAUSE_ID
+PAT-REV-SYNC,Item-MDM,PD revision not interfaced to EBS (00 vs A),8,Yes (replay),RCA-01
+PAT-CCO,Item-MDM,CCO created with no/incorrect revised items,10,No (assisted),RCA-02
+PAT-CCB-REV,Item-MDM,CCB report revision-sequence error,6,No (guidance),RCA-03
+PAT-HOLD,QTD,Order lines stuck on auto-applied holds,10,Yes (rule-based),RCA-04
+PAT-RCV,PTM,Receiving stuck in RCV_INTERFACE,6,Yes (catalogued data fix),RCA-05
+PAT-BLUJAY,PTM,EBS to BluJay transmission failure,5,Yes (replay),RCA-06
+PAT-CPQ,QTD,CPQ to EBS submission failure,6,Partial,RCA-07
+PAT-APPTREE,PTM,APPTREE_EVENT daily processing error,4,No (code fix),RCA-08
+PAT-PEG,PTM,Hard pegging planning issue,4,No (assisted),RCA-09
+PAT-PLANT,QTD,Plant/warehouse change blocked,5,Partial,RCA-10
+PAT-SOREOPEN,QTD,SO header reopen for audit,1,Yes (controlled action),RCA-11
+PAT-DROPSHIP,QTD,DropShip PO-not-unlinked data corruption,5,Yes (catalogued data fix),RCA-12
+PAT-OBLIG,PTC,Revenue obligation blocking recognition,8,No (finance-approved),RCA-13
+PAT-CONTRACT,Services,Order-to-contract anomaly,2,No (vendor SR),RCA-14
+PAT-AR-AUTOINV,PTC,AR AutoInvoice interface rejection,14,Partial,RCA-AR1
+PAT-AP-IMPORT,PTP,AP invoice import / matching failure,12,No (assisted),RCA-AP1
+PAT-AP-HOLD,PTP,AP invoice on price/matching hold,2,Partial,RCA-AP2

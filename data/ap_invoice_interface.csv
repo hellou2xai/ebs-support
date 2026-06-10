@@ -1,0 +1,15 @@
+INVOICE_ID,INVOICE_NUM,SUPPLIER_NAME,SUPPLIER_TIER,PO_NUMBER,AMOUNT,CURRENCY,REJECTION_REASON,HOLD_NAME,MATCH_STATUS,INCIDENT_NUMBER
+9154460,AP-717224,CapaciTech Components,Critical-Component,PO-4511813,324884.96,USD,Distribution account combination invalid,,MATCHED,INC1140104
+9115095,AP-721567,CapaciTech Components,Critical-Component,PO-4533681,294493.33,USD,No matching purchase order line,Qty Rec Hold,UNMATCHED,INC1140221
+9159609,AP-751717,Apex Fasteners,Approved,PO-4501824,881575.12,USD,Distribution account combination invalid,,MATCHED,INC1140333
+9184889,AP-703280,CircuitForm PCB,Strategic,PO-4581205,671508.05,USD,Supplier site has no tax registration,,MATCHED,INC1140404
+9170457,AP-739893,Volt Semiconductors,Critical-Component,PO-4564569,735592.44,USD,Distribution account combination invalid,,MATCHED,INC1140419
+9164139,AP-720253,CapaciTech Components,Critical-Component,PO-4554379,872159.42,USD,No matching purchase order line,Qty Rec Hold,UNMATCHED,INC1140523
+9147012,AP-747537,SteelForm Enclosures,Approved,PO-4513022,66221.29,USD,Distribution account combination invalid,,MATCHED,INC1140643
+9131925,AP-778269,Cellcore Battery Systems,Critical-Component,PO-4502799,139350.23,USD,PO quantity received less than billed,Qty Rec Hold,UNMATCHED,INC1140735
+9118964,AP-743064,CapaciTech Components,Critical-Component,PO-4519340,806399.81,USD,Unit price exceeds PO price tolerance,Price Hold,MATCHED,INC1140775
+9134782,AP-731186,CapaciTech Components,Critical-Component,PO-4577182,41493.36,USD,Unit price exceeds PO price tolerance,Price Hold,MATCHED,INC1140886
+9105683,AP-777812,Cellcore Battery Systems,Critical-Component,PO-4514293,15859.03,USD,Distribution account combination invalid,,MATCHED,INC1140962
+9108609,AP-758138,Lumen Wire and Cable,Approved,PO-4509632,257268.58,USD,Distribution account combination invalid,,MATCHED,INC1141035
+9114996,AP-766263,CapaciTech Components,Critical-Component,PO-4579354,254599.95,USD,Distribution account combination invalid,,MATCHED,INC1141104
+9133408,AP-754524,Lumen Wire and Cable,Approved,PO-4512463,52692.07,USD,Distribution account combination invalid,,MATCHED,INC1141166

@@ -1,0 +1,14 @@
+USER_NAME,FULL_NAME,EMAIL,APP_ROLE,AMS_TIER,EBS_RESPONSIBILITY,ASSIGNMENT_GROUP
+BUSER_OM,Dana Okafor,dana.okafor@vertiv.com,Business User,-,Order Management User,-
+BUSER_PD,Marco Ferraro,marco.ferraro@vertiv.com,Business User,-,Engineering User,-
+L1_ITEMMDM,Priya Nair,priya.nair@capgemini.com,L1 Support Analyst,L1,Application Diagnostics,Oracle-Alice-Item-MDM
+L1_QTD,Tom Reyes,tom.reyes@capgemini.com,L1 Support Analyst,L1,Application Diagnostics,OMCS-ERP-Alice-QTD
+L2_ITEMMDM,Meet Meghani,meet.meghani@capgemini.com,L2 Support Engineer,L2,Bills of Material,Oracle-Alice-Item-MDM
+L2_QTD,Vikram Raju,vikram.raju@capgemini.com,L2 Support Engineer,L2,Order Management Super User,OMCS-ERP-Alice-QTD
+L2_PTM,Wei Zhang,wei.zhang@capgemini.com,L2 Support Engineer,L2,Purchasing Super User,Oracle-EBS-Alice-OSA-PTM
+L3_TECH,Anil Kapoor,anil.kapoor@capgemini.com,L3 SME,L3,System Administrator,EBS-DBA
+L3_PTC,Ravi Menon,ravi.menon@capgemini.com,L3 SME,L3,Projects Super User,Oracle-EBS-Alice-PTC
+FIN_CTRL,Helen Brandt,helen.brandt@vertiv.com,Finance Controller,Approver,Receivables Manager,Oracle-EBS-Alice-PTC
+CHG_APPROVER,Soumya Iyer,soumya.iyer@capgemini.com,Change Approver,CAB,System Administrator,Change-Management
+AMS_MGR,Claudia Rossi,claudia.rossi@capgemini.com,AMS Service Manager,Manager,Application Diagnostics,AMS-Leadership
+PLAT_ADMIN,Hiroshi Tanaka,hiroshi.tanaka@capgemini.com,Platform Admin,Admin,System Administrator,AMS-Platform

@@ -1,0 +1,11 @@
+CUSTOMER_NAME,TIER,SEGMENT,REGION
+Atlas Colocation,Strategic,Colocation,AMER
+Northwind Hyperscale,Strategic,Hyperscale,AMER
+Meridian Telecom,Strategic,Telco,EMEA
+Summit Data Centers,High-Value,Colocation,AMER
+Cascade Cloud,High-Value,Cloud,APAC
+Helios Financial Group,High-Value,BFSI,EMEA
+Orion Health Systems,Standard,Healthcare,AMER
+Brightline Logistics,Standard,Logistics,AMER
+Granite Manufacturing,Standard,Industrial,EMEA
+Pioneer University,Standard,Education,AMER

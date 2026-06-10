@@ -1,0 +1,237 @@
+NODE_ID,NODE_TYPE,LABEL,ATTRIBUTES
+AGILE_PD,System,AGILE_PD,
+ITEM_MDM,System,ITEM_MDM,
+EBS,System,EBS,
+CPQ,System,CPQ,
+BLUJAY,System,BLUJAY,
+CLOUD2EBS_DROPSHIP,System,CLOUD2EBS_DROPSHIP,
+Item-MDM,ValueStream,Item-MDM,
+QTD,ValueStream,QTD,
+PTM,ValueStream,PTM,
+PTC,ValueStream,PTC,
+Services,ValueStream,Services,
+RCA-01,RootCause,EBS item revision stuck at 00 while PD shows A/B,Integration/Code
+PFIX-01,PermanentFix,"Idempotent CO/NRCO interface with retry, alerting, and a guard that blocks Item Workbench edits on items with a pending CO interface",Integration/Code
+RCA-02,RootCause,CCO created with no revised items fetched / wrong CO,Config/Code
+PFIX-02,PermanentFix,Pre-validate revision ordering and CO linkage before CCO creation; surface CCB errors at submission,Config/Code
+RCA-03,RootCause,CCB report error: old revision higher than new revision,Config/Process
+PFIX-03,PermanentFix,Enforce a revision-sequence rule at PD change-order entry so a lower new revision is rejected before it reaches EBS,Config/Process
+RCA-04,RootCause,Order lines cannot progress due to holds,Config/Integration
+PFIX-04,PermanentFix,Automated hold-release workflow that releases config-exception holds when the configuration validates and PR/PO conditions clear,Config/Integration
+RCA-05,RootCause,"Receiving stuck, quantity shows 0, rows in RCV_INTERFACE",Code/Process
+PFIX-05,PermanentFix,Monitor RCV_INTERFACE for stuck rows and auto-reprocess; catalogue the clear-and-reprocess data fix,Code/Process
+RCA-06,RootCause,EBS deliveries not transmitting to BluJay,Integration
+PFIX-06,PermanentFix,"Add retry, dead-letter and monitoring on the BluJay interface; alert on failed transmissions",Integration
+RCA-07,RootCause,CPQ quote cannot submit order to EBS,Config
+PFIX-07,PermanentFix,"Pre-submit validation in CPQ for orderability, pricing and serviceability before the order reaches EBS",Config
+RCA-08,RootCause,APPTREE_EVENT error causes daily order processing outage,Code
+PFIX-08,PermanentFix,Fix the APPTREE_EVENT handler for the failing condition and add monitoring on the daily run,Code
+RCA-09,RootCause,Hard pegging issue in planning (Test and Production),Config
+PFIX-09,PermanentFix,Correct and standardise pegging setup; add a planning data-quality check,Config
+RCA-10,RootCause,Cannot change plant/warehouse on order,Config
+PFIX-10,PermanentFix,Clarify and fix the plant-change validation so valid changes are not blocked,Config
+RCA-11,RootCause,Sales order headers need reopening for audit changes,Process
+PFIX-11,PermanentFix,"Provide a controlled, audited reopen process to remove repeated manual requests",Process
+RCA-12,RootCause,DropShip order data corruption after cancellation,Code
+PFIX-12,PermanentFix,Fix the DropShip cancellation to unlink the PO automatically and add a referential-integrity check,Code
+RCA-13,RootCause,Obligation error blocks revenue recognition / billing,Config
+PFIX-13,PermanentFix,Complete obligation and contingency setup; add a pre-billing validation,Config
+RCA-14,RootCause,Order-to-contract generation anomaly,Vendor/Config
+PFIX-14,PermanentFix,Confirm intended cardinality with Oracle; apply the patch/config once the SR resolves,Vendor/Config
+RCA-AR1,RootCause,"AR AutoInvoice rejections (no revenue account, tax, period)",Config
+PFIX-AR1,PermanentFix,"Complete AutoAccounting and tax setup for all batch sources, and add a pre-AutoInvoice validation report that catches missing accounts before the run",Config
+RCA-AP1,RootCause,AP invoice import fails PO matching (qty/no match),Config/Process
+PFIX-AP1,PermanentFix,"Enforce receipt-required and matching tolerances at supplier and PO setup, and alert on stuck interface rejections",Config/Process
+RCA-AP2,RootCause,AP invoice on price hold (invoice price over PO tolerance),Config/Process
+PFIX-AP2,PermanentFix,Keep PO price agreements current and tighten price tolerance governance to stop recurring price holds,Config/Process
+RCA-AP3,RootCause,AP invoice rejected on validation (supplier site / tax / account),Config/Process
+PFIX-AP3,PermanentFix,Make supplier onboarding enforce tax registration and default accounting so invoices validate first time,Config/Process
+PAT-REV-SYNC,IssuePattern,PD revision not interfaced to EBS (00 vs A),Yes (replay)
+PAT-CCO,IssuePattern,CCO created with no/incorrect revised items,No (assisted)
+PAT-CCB-REV,IssuePattern,CCB report revision-sequence error,No (guidance)
+PAT-HOLD,IssuePattern,Order lines stuck on auto-applied holds,Yes (rule-based)
+PAT-RCV,IssuePattern,Receiving stuck in RCV_INTERFACE,Yes (catalogued data fix)
+PAT-BLUJAY,IssuePattern,EBS to BluJay transmission failure,Yes (replay)
+PAT-CPQ,IssuePattern,CPQ to EBS submission failure,Partial
+PAT-APPTREE,IssuePattern,APPTREE_EVENT daily processing error,No (code fix)
+PAT-PEG,IssuePattern,Hard pegging planning issue,No (assisted)
+PAT-PLANT,IssuePattern,Plant/warehouse change blocked,Partial
+PAT-SOREOPEN,IssuePattern,SO header reopen for audit,Yes (controlled action)
+PAT-DROPSHIP,IssuePattern,DropShip PO-not-unlinked data corruption,Yes (catalogued data fix)
+PAT-OBLIG,IssuePattern,Revenue obligation blocking recognition,No (finance-approved)
+PAT-CONTRACT,IssuePattern,Order-to-contract anomaly,No (vendor SR)
+PAT-AR-AUTOINV,IssuePattern,AR AutoInvoice interface rejection,Partial
+PAT-AP-IMPORT,IssuePattern,AP invoice import / matching failure,No (assisted)
+PAT-AP-HOLD,IssuePattern,AP invoice on price/matching hold,Partial
+SBM-090351,DataFix,Clear stuck RCV_INTERFACE rows and reprocess,
+DFX-DROPSHIP-01,DataFix,Unlink PO after DropShip cancellation,
+DFX-REVSYNC-01,DataFix,Force EBS revision to match PD after failed CO interface,
+DFX-HOLD-01,DataFix,Bulk release config-exception holds (condition cleared),
+DFX-OBLIG-01,DataFix,Republish stuck revenue obligation,
+10075597,Item,Liebert IntelliSlot RDU101 Comms Card,Monitoring
+10076460P1,Item,Liebert ITA2 10kW Three-Phase UPS 208V,UPS
+10074710,Item,Vertiv SmartRow 2 Edge Data Centre,Integrated
+10076238,Item,Liebert ITON CX 600VA UPS,UPS
+10078669,Item,Vertiv Geist MPH2 Managed Rack PDU,PDU
+10078286,Item,Vertiv SmartCabinet2-E Integrated Edge Cabinet,Integrated
+10075284,Item,Liebert CRV In-Row Cooling 35kW,Thermal
+10073232,Item,Liebert RDU501 Monitoring Gateway,Monitoring
+10078350,Item,Liebert EXM2 100kW Three-Phase UPS,UPS
+10072992,Item,Vertiv VR Rack 42U 800x1200mm,Rack
+10075310P1,Item,Liebert DSE Free-Cooling 100kW,Thermal
+10077452,Item,Vertiv Geist Rack Transfer Switch 1U 20A,Rack
+10072999P1,Item,Liebert GXT5 3000VA Online UPS 2U 120V,UPS
+10077173,Item,Vertiv VR Rack 42U 600x1200mm,Rack
+10080473,Item,Liebert PSI5 1500VA Line-Interactive UPS 2U,UPS
+10077577,Item,Liebert PDX Compact DX Cooling 29kW,Thermal
+10078341P1,Item,Liebert APM2 Modular Three-Phase UPS,UPS
+10080388,Item,Vertiv Geist MPH2 Metered Rack PDU,PDU
+10075041P1,Item,Liebert GXT5 1500VA Online UPS 2U,UPS
+10073978P1,Item,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS
+10080072,Item,Liebert GXT5 External Battery Cabinet 144V 2U,Battery
+INC0903771,Incident,"Hello, kindly provide the root cause and workaround for CO-1",Item MDM integration issue
+INC0877704,Incident,linked/recreated ticket,recurrence
+INC0903826,Incident,Item revision for part 10077424 did not push in EBS. Current,Revision sync issue
+INC0934551,Incident,"Lines 17.1- 17.7 cannot be progressed, this is a buy-out and",Order progression / holds
+INC0928344,Incident,EBS 1335698  line 1.1..0 has Autocreate Config Exception hol,Autocreate config hold
+INC0933232,Incident,Please fix the TJ Hard pegging issue in Test and Production ,Planning system issue
+INC0932356,Incident,"Hi, please assist to change the plant from 004 to plant 015.",Warehouse/plant sync issue
+INC0979873,Incident,CPQ-944610_Unable to submit the order due to error,CPQ/EBS submission failure
+INC0978839,Incident,Referring to ticket INC0925593 submitted last April:I raised,CCO creation inconsistency
+INC0925593,Incident,linked/recreated ticket,recurrence
+INC1008688,Incident,APPTREE_EVENT error in Oracle EBS,Daily order processing outage
+INC0985051,Incident,Information is not being transmitted from Oracle EBS to BluJ,Integration failure
+INC0909168,Incident,I need the SO header for the following list of Projects to b,Revenue/order lifecycle
+INC0998890,Incident,"Receiving issue: DN 2351536 - Shows as 'pending to receive',",Receiving transaction stuck
+INC0985197,Incident,linked/recreated ticket,recurrence
+INC0899046,Incident,Good day!Kindly assist in investigating and providing a work,CCB processing issue
+INC0899823,Incident,Cloud2EBS Implementation - Order Deletion Support,Data corruption / order cancellation
+INC0899936,Incident,"Obligation error for Project 212539, SO 5013452.  Can not re",Revenue recognition issue
+INC0899839,Incident,Related to INC0890340CCO-96144/CCO-96158/'CCO-96150 created ,Duplicate CCO generation
+INC0890340,Incident,linked/recreated ticket,recurrence
+INC0899788,Incident,Good day!Kindly assist in investigating the root cause and t,NRCO/CCB integration issue
+INC0899829,Incident,please see attached email file.,Data corruption / order cancellation
+INC0897635,Incident,"We just had conversation with Kaur, Amanpreet last week whic",Contract generation anomaly
+INC0899325,Incident,the file is refreshed again with unencrypted data,Scheduling/debrief systemic issue
+INC1100370,Incident,CCO-96142 created under CO-1149823 but no revised items fetc,CCO creation inconsistency
+INC1100547,Incident,CCO-96273 created under CO-1122431 but no revised items fetc,CCO creation inconsistency
+INC828785,Incident,linked/recreated ticket,recurrence
+INC1100792,Incident,Item 10073232 revision mismatch: PD shows A but EBS shows 00,Revision sync issue
+INC1101063,Incident,CCB report error for CO-1173579: old revision higher than ne,CCB processing issue
+INC1101344,Incident,Item 10076238 revision mismatch: PD shows A but EBS shows 00,Revision sync issue
+INC1101356,Incident,Item 10076238 revision mismatch: PD shows C but EBS shows 00,Revision sync issue
+INC1101643,Incident,"Receiving issue DN 2456471: stuck in RCV_INTERFACE, quantity",Receiving transaction stuck
+INC1101694,Incident,Item 10073978P1 revision mismatch: PD shows B but EBS shows ,Revision sync issue
+INC1101981,Incident,APPTREE_EVENT error in Oracle EBS blocking order processing,Daily order processing outage
+INC855461,Incident,linked/recreated ticket,recurrence
+INC1102024,Incident,"Obligation error for Project 217177 SO 5067839, cannot recog",Revenue recognition issue
+INC1102298,Incident,Unable to change plant on order 130942 due to validation err,Warehouse/plant sync issue
+INC843309,Incident,linked/recreated ticket,recurrence
+INC1102646,Incident,Order 204847 data corruption: PO not unlinked after DropShip,Data corruption / order cancellation
+INC1102784,Incident,CPQ-912899 unable to submit order due to error,CPQ/EBS submission failure
+INC1103071,Incident,Hard pegging issue for item 10080473 in Test and Production,Planning system issue
+INC1103217,Incident,CCO-96248 created under CO-1153269 but no revised items fetc,CCO creation inconsistency
+INC1103259,Incident,APPTREE_EVENT error in Oracle EBS blocking order processing,Daily order processing outage
+INC1103615,Incident,Item 10076460P1 revision mismatch: PD shows C but EBS shows ,Revision sync issue
+INC1103759,Incident,CCO-96304 created under CO-1175880 but no revised items fetc,CCO creation inconsistency
+INC1104004,Incident,"Obligation error for Project 214915 SO 5059929, cannot recog",Revenue recognition issue
+INC809508,Incident,linked/recreated ticket,recurrence
+INC1104293,Incident,CCO-96259 created under CO-1127938 but no revised items fetc,CCO creation inconsistency
+INC1104587,Incident,Unable to change plant on order 202692 due to validation err,Warehouse/plant sync issue
+INC1104922,Incident,"Receiving issue DN 2747171: stuck in RCV_INTERFACE, quantity",Receiving transaction stuck
+INC806658,Incident,linked/recreated ticket,recurrence
+INC1104990,Incident,"Receiving issue DN 2634030: stuck in RCV_INTERFACE, quantity",Receiving transaction stuck
+INC873519,Incident,linked/recreated ticket,recurrence
+INC1105184,Incident,CCB report error for CO-1148393: old revision higher than ne,CCB processing issue
+INC1105365,Incident,"Order 211351 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC803248,Incident,linked/recreated ticket,recurrence
+INC1105532,Incident,Order 144168 data corruption: PO not unlinked after DropShip,Data corruption / order cancellation
+INC860332,Incident,linked/recreated ticket,recurrence
+INC1105817,Incident,"Order 182227 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC852386,Incident,linked/recreated ticket,recurrence
+INC1106089,Incident,CCO-96135 created under CO-1176099 but no revised items fetc,CCO creation inconsistency
+INC857199,Incident,linked/recreated ticket,recurrence
+INC1106440,Incident,Unable to change plant on order 187154 due to validation err,Warehouse/plant sync issue
+INC1106549,Incident,Delivery 2649643 not transmitting from EBS to BluJay,Integration failure
+INC1106870,Incident,CPQ-900053 unable to submit order due to error,CPQ/EBS submission failure
+INC1106928,Incident,APPTREE_EVENT error in Oracle EBS blocking order processing,Daily order processing outage
+INC881167,Incident,linked/recreated ticket,recurrence
+INC1107233,Incident,"Order 133201 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC1107481,Incident,"Obligation error for Project 211746 SO 5055724, cannot recog",Revenue recognition issue
+INC1107772,Incident,"Order 217500 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC866162,Incident,linked/recreated ticket,recurrence
+INC1107822,Incident,"Obligation error for Project 214543 SO 5068327, cannot recog",Revenue recognition issue
+INC835992,Incident,linked/recreated ticket,recurrence
+INC1107865,Incident,"Order 140561 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC1108070,Incident,Delivery 2736674 not transmitting from EBS to BluJay,Integration failure
+INC1108095,Incident,Delivery 2719361 not transmitting from EBS to BluJay,Integration failure
+INC1108148,Incident,Order 146728 data corruption: PO not unlinked after DropShip,Data corruption / order cancellation
+INC1108374,Incident,CCB report error for CO-1106590: old revision higher than ne,CCB processing issue
+INC849692,Incident,linked/recreated ticket,recurrence
+INC1108395,Incident,CCO-96026 created under CO-1170702 but no revised items fetc,CCO creation inconsistency
+INC832411,Incident,linked/recreated ticket,recurrence
+INC1108773,Incident,"Order 203920 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC1109137,Incident,CCB report error for CO-1175849: old revision higher than ne,CCB processing issue
+INC1109183,Incident,"Order 208697 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC1109527,Incident,Delivery 2489890 not transmitting from EBS to BluJay,Integration failure
+INC1109829,Incident,Hard pegging issue for item 10077577 in Test and Production,Planning system issue
+INC831963,Incident,linked/recreated ticket,recurrence
+INC1110199,Incident,CPQ-927802 unable to submit order due to error,CPQ/EBS submission failure
+INC1110257,Incident,Item 10078341P1 revision mismatch: PD shows A but EBS shows ,Revision sync issue
+INC858743,Incident,linked/recreated ticket,recurrence
+INC1110448,Incident,CPQ-972544 unable to submit order due to error,CPQ/EBS submission failure
+INC872140,Incident,linked/recreated ticket,recurrence
+INC1110600,Incident,"Receiving issue DN 2465438: stuck in RCV_INTERFACE, quantity",Receiving transaction stuck
+INC1110634,Incident,Hard pegging issue for item 10073978P1 in Test and Productio,Planning system issue
+INC816591,Incident,linked/recreated ticket,recurrence
+INC1110774,Incident,"Receiving issue DN 2600974: stuck in RCV_INTERFACE, quantity",Receiving transaction stuck
+INC1110845,Incident,CCO-96295 created under CO-1109710 but no revised items fetc,CCO creation inconsistency
+INC811164,Incident,linked/recreated ticket,recurrence
+INC1111173,Incident,CPQ-959049 unable to submit order due to error,CPQ/EBS submission failure
+INC840026,Incident,linked/recreated ticket,recurrence
+INC1111185,Incident,"Obligation error for Project 212573 SO 5031439, cannot recog",Revenue recognition issue
+INC1111516,Incident,"Obligation error for Project 217438 SO 5009329, cannot recog",Revenue recognition issue
+INC1111831,Incident,"Order 214886 lines on Autocreate Config Exception hold, cann",Order progression / holds
+INC1112148,Incident,Unable to change plant on order 169857 due to validation err,Warehouse/plant sync issue
+INC1112399,Incident,"Obligation error for Project 210339 SO 5088117, cannot recog",Revenue recognition issue
+INC1120063,Incident,AR AutoInvoice rejection for Brightline Logistics invoice VT,AR invoice interface error
+INC1120106,Incident,AR AutoInvoice rejection for Brightline Logistics invoice VT,AR invoice interface error
+INC1120187,Incident,AR AutoInvoice rejection for Orion Health Systems invoice VT,AR invoice interface error
+INC1120305,Incident,AR AutoInvoice rejection for Pioneer University invoice VTV-,AR invoice interface error
+INC1120365,Incident,AR AutoInvoice rejection for Granite Manufacturing invoice V,AR invoice interface error
+INC1120450,Incident,AR AutoInvoice rejection for Orion Health Systems invoice VT,AR invoice interface error
+INC870592,Incident,linked/recreated ticket,recurrence
+INC1120570,Incident,AR AutoInvoice rejection for Granite Manufacturing invoice V,AR invoice interface error
+INC1120637,Incident,AR AutoInvoice rejection for Meridian Telecom invoice VTV-24,AR invoice interface error
+INC818894,Incident,linked/recreated ticket,recurrence
+INC1120757,Incident,AR AutoInvoice rejection for Brightline Logistics invoice VT,AR invoice interface error
+INC863956,Incident,linked/recreated ticket,recurrence
+INC1120865,Incident,AR AutoInvoice rejection for Summit Data Centers invoice VTV,AR invoice interface error
+INC821805,Incident,linked/recreated ticket,recurrence
+INC1120963,Incident,AR AutoInvoice rejection for Helios Financial Group invoice ,AR invoice interface error
+INC1121076,Incident,AR AutoInvoice rejection for Brightline Logistics invoice VT,AR invoice interface error
+INC820706,Incident,linked/recreated ticket,recurrence
+INC1121196,Incident,AR AutoInvoice rejection for Pioneer University invoice VTV-,AR invoice interface error
+INC874963,Incident,linked/recreated ticket,recurrence
+INC1121313,Incident,AR AutoInvoice rejection for Atlas Colocation invoice VTV-24,AR invoice interface error
+INC846179,Incident,linked/recreated ticket,recurrence
+INC1140104,Incident,"AP invoice AP-717224 from CapaciTech Components ($324,885) f",AP invoice interface error
+INC1140221,Incident,"AP invoice AP-721567 from CapaciTech Components ($294,493) f",AP invoice interface error
+INC844396,Incident,linked/recreated ticket,recurrence
+INC1140333,Incident,"AP invoice AP-751717 from Apex Fasteners ($881,575) failed i",AP invoice interface error
+INC1140404,Incident,"AP invoice AP-703280 from CircuitForm PCB ($671,508) failed ",AP invoice interface error
+INC829015,Incident,linked/recreated ticket,recurrence
+INC1140419,Incident,"AP invoice AP-739893 from Volt Semiconductors ($735,592) fai",AP invoice interface error
+INC1140523,Incident,"AP invoice AP-720253 from CapaciTech Components ($872,159) f",AP invoice interface error
+INC1140643,Incident,"AP invoice AP-747537 from SteelForm Enclosures ($66,221) fai",AP invoice interface error
+INC884518,Incident,linked/recreated ticket,recurrence
+INC1140735,Incident,"AP invoice AP-778269 from Cellcore Battery Systems ($139,350",AP invoice interface error
+INC1140775,Incident,"AP invoice AP-743064 from CapaciTech Components ($806,400) f",AP invoice interface error
+INC1140886,Incident,"AP invoice AP-731186 from CapaciTech Components ($41,493) fa",AP invoice interface error
+INC1140962,Incident,"AP invoice AP-777812 from Cellcore Battery Systems ($15,859)",AP invoice interface error
+INC880623,Incident,linked/recreated ticket,recurrence
+INC1141035,Incident,"AP invoice AP-758138 from Lumen Wire and Cable ($257,269) fa",AP invoice interface error
+INC819442,Incident,linked/recreated ticket,recurrence
+INC1141104,Incident,"AP invoice AP-766263 from CapaciTech Components ($254,600) f",AP invoice interface error
+INC1141166,Incident,"AP invoice AP-754524 from Lumen Wire and Cable ($52,692) fai",AP invoice interface error
+INC887177,Incident,linked/recreated ticket,recurrence

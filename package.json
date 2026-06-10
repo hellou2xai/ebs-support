@@ -1,0 +1,16 @@
+{
+  "name": "ebs-support",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Alice AMS Assist: agentic support app for Vertiv Oracle EBS (U2xAI demo).",
+  "scripts": {
+    "build": "npm --prefix web install --include=dev && npm --prefix web run build && npm --prefix server install --include=dev",
+    "start": "npm --prefix server start",
+    "dev:server": "npm --prefix server run dev",
+    "dev:web": "npm --prefix web run dev",
+    "data": "python generate_synthetic_data.py"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

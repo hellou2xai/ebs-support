@@ -1,0 +1,19 @@
+# Render blueprint: single free web service that builds the React app and serves
+# it from the Node/Express backend. Set ANTHROPIC_API_KEY in the Render dashboard
+# (do not commit it). Without a key the app runs in OFFLINE (deterministic) mode.
+services:
+  - type: web
+    name: ebs-support
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: CLAUDE_MODEL
+        value: claude-sonnet-4-6
+      - key: NODE_VERSION
+        value: "20"

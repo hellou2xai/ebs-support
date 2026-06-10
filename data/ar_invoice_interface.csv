@@ -1,0 +1,15 @@
+INTERFACE_LINE_ID,TRX_NUMBER,BILL_TO_CUSTOMER,CUSTOMER_TIER,OPERATING_UNIT,AMOUNT,CURRENCY,BATCH_SOURCE,ERROR_MESSAGE,PERIOD_NAME,INCIDENT_NUMBER
+8821079,VTV-2443687,Brightline Logistics,Standard,Vertiv EMEA OU,592664.81,USD,CPQ_ORDERS,Duplicate transaction number in interface,DEC-24,INC1120063
+8867449,VTV-2442372,Brightline Logistics,Standard,Vertiv US OU,706783.02,USD,CPQ_ORDERS,No Revenue Account found for batch source,DEC-24,INC1120106
+8863532,VTV-2417172,Orion Health Systems,Standard,Vertiv US OU,194056.67,USD,CPQ_ORDERS,Duplicate transaction number in interface,JUN-25,INC1120187
+8820181,VTV-2414871,Pioneer University,Standard,Vertiv EMEA OU,48962.26,USD,CPQ_ORDERS,Invalid memo line / inventory item,SEP-25,INC1120305
+8817892,VTV-2424983,Granite Manufacturing,Standard,Vertiv US OU,171407.88,USD,CPQ_ORDERS,GL period not open for the accounting date,SEP-25,INC1120365
+8863483,VTV-2486499,Orion Health Systems,Standard,Vertiv EMEA OU,23693.14,USD,CPQ_ORDERS,Invalid tax rate code for ship-to site,SEP-25,INC1120450
+8861993,VTV-2453841,Granite Manufacturing,Standard,Vertiv EMEA OU,46958.0,USD,CPQ_ORDERS,GL period not open for the accounting date,DEC-24,INC1120570
+8853736,VTV-2413069,Meridian Telecom,Strategic,Vertiv US OU,551145.58,USD,CPQ_ORDERS,Invalid tax rate code for ship-to site,JUN-25,INC1120637
+8870912,VTV-2469942,Brightline Logistics,Standard,Vertiv US OU,138305.01,USD,CPQ_ORDERS,No Revenue Account found for batch source,JUN-25,INC1120757
+8839251,VTV-2483066,Summit Data Centers,High-Value,Vertiv US OU,798712.96,USD,CPQ_ORDERS,No Revenue Account found for batch source,JUN-25,INC1120865
+8879887,VTV-2423600,Helios Financial Group,High-Value,Vertiv EMEA OU,48787.89,USD,CPQ_ORDERS,GL period not open for the accounting date,MAR-25,INC1120963
+8809681,VTV-2460981,Brightline Logistics,Standard,Vertiv EMEA OU,111485.9,USD,CPQ_ORDERS,Duplicate transaction number in interface,SEP-25,INC1121076
+8847049,VTV-2463335,Pioneer University,Standard,Vertiv EMEA OU,291646.4,USD,CPQ_ORDERS,Invalid tax rate code for ship-to site,SEP-25,INC1121196
+8828705,VTV-2437512,Atlas Colocation,Strategic,Vertiv US OU,437240.19,USD,CPQ_ORDERS,No Revenue Account found for batch source,SEP-25,INC1121313

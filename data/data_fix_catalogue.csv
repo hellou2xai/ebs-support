@@ -1,0 +1,6 @@
+FIX_ID,FIX_NAME,EBS_MODULE,SIGNATURE,AFFECTED_TABLES,AFFECTED_COLUMNS,BLAST_RADIUS_ROWS,REQUIRES_CHANGE_APPROVAL,ROLLBACK_METHOD
+SBM-090351,Clear stuck RCV_INTERFACE rows and reprocess,INV/PO,"Receipt stuck in RCV_INTERFACE, received qty 0","RCV_INTERFACE,RCV_TRANSACTIONS_INTERFACE","PROCESSING_STATUS_CODE,TRANSACTION_STATUS_CODE",1,Y,Re-run Receiving Transaction Processor
+DFX-DROPSHIP-01,Unlink PO after DropShip cancellation,ONT/PO,Cancelled DropShip order with PO still linked,"OE_DROP_SHIP_SOURCES,PO_HEADERS_ALL","LINE_LOCATION_ID,PO_HEADER_ID",2,Y,Restore link from oe_drop_ship_sources_bkp
+DFX-REVSYNC-01,Force EBS revision to match PD after failed CO interface,INV/BOM,EBS revision 00 while PD revision A and CO not interfaced,MTL_ITEM_REVISIONS_B,REVISION,1,Y,"Revert revision from mtl_item_revisions_bkp, re-run CO interface"
+DFX-HOLD-01,Bulk release config-exception holds (condition cleared),ONT,Autocreate Config Exception holds open after config validated,"OE_ORDER_HOLDS_ALL,OE_HOLD_SOURCES_ALL",RELEASED_FLAG,8,Y,Reset released_flag from audit snapshot
+DFX-OBLIG-01,Republish stuck revenue obligation,Projects/AR,Obligation publishing error blocking rev rec,"PJB_BILL_TRX,RA_INTERFACE_LINES_ALL",OBLIGATION_STATUS,3,Y,Reverse and republish obligation
