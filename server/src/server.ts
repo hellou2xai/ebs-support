@@ -206,10 +206,12 @@ app.get("/api/incident/:id/insights", (req, res) => {
 app.get("/api/persona/:role", (req, res) => res.json(personaDashboard(req.params.role)));
 
 // Demo login (admin/admin). Not real auth; gates the demo UI only.
+// Forgiving on case and whitespace: browsers autocapitalise and autofill pads.
 app.post("/api/login", (req, res) => {
-  const { username, password } = req.body ?? {};
-  if (username === "admin" && password === "admin") res.json({ ok: true, user: "admin", role: "Administrator" });
-  else res.status(401).json({ ok: false, error: "Invalid credentials" });
+  const u = String(req.body?.username ?? "").trim().toLowerCase();
+  const p = String(req.body?.password ?? "").trim();
+  if (u === "admin" && p.toLowerCase() === "admin") res.json({ ok: true, user: "admin", role: "Administrator" });
+  else res.status(401).json({ ok: false, error: "Invalid credentials. Use admin / admin." });
 });
 
 // Serve the built React app in production (single-service deploy on Render).

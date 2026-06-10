@@ -29,11 +29,13 @@ export function Login({ onLogin }: { onLogin: () => void }) {
         <h3>Sign in</h3>
         <label className="login-field">
           <span>Username</span>
-          <input value={u} onChange={e => setU(e.target.value)} placeholder="admin" autoFocus />
+          <input value={u} onChange={e => setU(e.target.value)} placeholder="admin" autoFocus
+            autoCapitalize="none" autoCorrect="off" spellCheck={false} />
         </label>
         <label className="login-field">
           <span>Password</span>
-          <input type="password" value={p} onChange={e => setP(e.target.value)} placeholder="admin" />
+          <input type="password" value={p} onChange={e => setP(e.target.value)} placeholder="admin"
+            autoCapitalize="none" autoCorrect="off" spellCheck={false} />
         </label>
         {err && <div className="login-err">{err}</div>}
         <button className="btn primary login-btn" type="submit" disabled={busy}>{busy ? "Signing in…" : "Sign in"}</button>
