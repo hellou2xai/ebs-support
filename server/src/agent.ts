@@ -70,7 +70,7 @@ async function liveNarrative(b: Omit<DiagnosticBundle, "narrative">): Promise<{ 
     model,
     max_tokens: 800,
     system:
-      "You are an Oracle EBS AMS support engineer for the Vertiv 'Alice' programme. " +
+      "You are an Oracle EBS AMS support engineer on the 'Alice' AMS programme. " +
       "Given a classified incident with evidence, root cause and recurrence, write a tight, scannable " +
       "diagnostic note for a fellow engineer, grounded in the evidence and the EBS objects. " +
       "Use exactly these markdown headers in this order, each followed by short content:\n" +

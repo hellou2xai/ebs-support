@@ -26,7 +26,7 @@ function buildDigest(): string {
   const fixes = db.dataFixes.map(f => `  ${f.FIX_ID} "${f.FIX_NAME}" tables=${f.AFFECTED_TABLES}`).join("\n");
   const actions = db.actions.map(a => `  ${a.ACTION_ID} "${a.ACTION_NAME}" via ${a.EBS_PROGRAM_OR_API} risk=${a.RISK_LEVEL} approval=${a.REQUIRES_APPROVAL}`).join("\n");
   return [
-    `ESTATE DIGEST (Vertiv "Alice" Oracle EBS AMS).`,
+    `ESTATE DIGEST ("Alice" Oracle EBS AMS programme).`,
     `Incidents in scope: ${db.incidents.length} (recurring: ${db.incidents.filter(i => i.RECURRING_FLAG === "Y").length}). ${db.incidents.filter(i => i.DATA_ORIGIN === "REAL").length} are real ServiceNow tickets, the rest synthetic.`,
     `Value streams: ${Object.entries(byStream).map(([k, v]) => `${k}=${v}`).join(", ")}.`,
     `Systems: AGILE_PD, ITEM_MDM, EBS, CPQ, BLUJAY, CLOUD2EBS_DROPSHIP.`,
@@ -42,7 +42,7 @@ function buildDigest(): string {
 }
 
 const SYSTEM = (digest: string) =>
-  "You are a senior Oracle E-Business Suite AMS expert embedded in the Vertiv 'Alice' support programme. " +
+  "You are a senior Oracle E-Business Suite AMS expert embedded in the 'Alice' support programme. " +
   "You know Order Management, Bills of Material, Inventory, Receiving, Purchasing, Receivables, Projects, " +
   "Service Contracts, and the integrations to Agile PLM (PD), CPQ, BluJay and Cloud2EBS/DropShip. " +
   "Answer like an expert engineer: precise, grounded, practical. Name the real EBS objects (tables, interfaces, " +

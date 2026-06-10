@@ -35,7 +35,7 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.get("/api/incidents", (req, res) => {
-  res.json(handlers.list_open_incidents({ limit: Number(req.query.limit) || 200 }));
+  res.json(handlers.list_incidents({ state: String(req.query.state || "all"), limit: Number(req.query.limit) || 300 }));
 });
 
 app.get("/api/incident/:id", (req, res) => {

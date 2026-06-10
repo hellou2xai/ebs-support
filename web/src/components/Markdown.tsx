@@ -6,7 +6,7 @@ export type DetailKind = "resolution" | "pattern" | "rca";
 interface Opts { onDetail?: (kind: DetailKind, id: string) => void; known?: Set<string>; }
 
 function inline(text: string, opts: Opts): ReactNode[] {
-  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`|INC\d{5,}|RCA-\d+|PAT-[A-Z0-9-]+)/g).filter(Boolean);
+  const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`|INC\d{5,}|RCA-[A-Z]{0,3}\d+|PAT-[A-Z0-9-]+)/g).filter(Boolean);
   return parts.map((p, i) => {
     if (p.startsWith("**") && p.endsWith("**")) return <strong key={i}>{p.slice(2, -2)}</strong>;
     if (p.startsWith("`") && p.endsWith("`")) return <code key={i}>{p.slice(1, -1)}</code>;
@@ -16,7 +16,7 @@ function inline(text: string, opts: Opts): ReactNode[] {
         return <a key={i} className={`inc-link ${known ? "" : "ext"}`} title={known ? "Open resolution" : "Referenced ticket (not in scope)"}
           onClick={() => known && opts.onDetail!("resolution", p)}>{p}</a>;
       }
-      if (/^RCA-\d+$/.test(p)) return <a key={i} className="inc-link rca" title="Open root cause" onClick={() => opts.onDetail!("rca", p)}>{p}</a>;
+      if (/^RCA-[A-Z]{0,3}\d+$/.test(p)) return <a key={i} className="inc-link rca" title="Open root cause" onClick={() => opts.onDetail!("rca", p)}>{p}</a>;
       if (/^PAT-[A-Z0-9-]+$/.test(p)) return <a key={i} className="inc-link pat" title="Open pattern" onClick={() => opts.onDetail!("pattern", p)}>{p}</a>;
     }
     return <span key={i}>{p}</span>;

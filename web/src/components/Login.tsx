@@ -22,8 +22,8 @@ export function Login({ onLogin }: { onLogin: () => void }) {
         <div className="login-brand">
           <span className="logo">◆</span>
           <div>
-            <div className="brand-title">Alice AMS Assist</div>
-            <div className="brand-sub">Vertiv · Oracle EBS Application Management</div>
+            <div className="brand-title">U2xAI Alice AMS Support</div>
+            <div className="brand-sub">Oracle EBS Application Management Services</div>
           </div>
         </div>
         <h3>Sign in</h3>

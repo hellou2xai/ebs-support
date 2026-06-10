@@ -4,7 +4,7 @@ import { getPersona, DetailKind } from "../api";
 const BAND_TONE: Record<string, string> = { Critical: "red", High: "amber" };
 const PRIO_TONE: Record<string, string> = { P1: "red", P2: "amber" };
 
-export function PersonaHome({ role, onDetail }: { role: string; onDetail: (kind: DetailKind, id: string) => void }) {
+export function PersonaHome({ role, onDetail, onOpenQueue }: { role: string; onDetail: (kind: DetailKind, id: string) => void; onOpenQueue: (filter: any) => void }) {
   const [d, setD] = useState<any>(null);
   useEffect(() => { setD(null); getPersona(role).then(setD).catch(() => setD(null)); }, [role]);
   if (!d) return <div className="panel empty">Loading {role} dashboard…</div>;
@@ -20,9 +20,11 @@ export function PersonaHome({ role, onDetail }: { role: string; onDetail: (kind:
 
       <div className="stat-row">
         {d.kpis.map((k: any, i: number) => (
-          <div className="stat" key={i}>
+          <div className={`stat ${k.filter ? "clickable" : ""}`} key={i}
+            title={k.filter ? "View these incidents in the queue" : ""}
+            onClick={() => k.filter && onOpenQueue(k.filter)}>
             <div className="stat-val" style={toneStyle(k.tone)}>{k.value}</div>
-            <div className="stat-label">{k.label}</div>
+            <div className="stat-label">{k.label}{k.filter ? " →" : ""}</div>
           </div>
         ))}
       </div>

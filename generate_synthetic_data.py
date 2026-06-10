@@ -402,7 +402,12 @@ for r in incident_rows:
         prio = random.choice(["P3", "P3", "P4"])
     impact = {"P1": "High", "P2": "Medium", "P3": "Medium", "P4": "Low"}[prio]
     urgency = {"P1": "High", "P2": "High", "P3": "Medium", "P4": "Low"}[prio]
-    state = random.choice(STATES_OPEN)
+    # Roughly half the synthetic incidents are already closed (they carry close
+    # codes/notes); the real 20 stay open so the demo flows use them.
+    if r[15] == "SYNTHETIC" and random.random() < 0.5:
+        state = "Closed"
+    else:
+        state = random.choice(STATES_OPEN)
     caller = random.choice(CALLERS)
     assignee = random.choice(ENG_BY_VS.get(vs, ["Anil Kapoor"]))
     meta = [module, caller, assignee, prio, impact, urgency, state, sla_due(opened, prio),

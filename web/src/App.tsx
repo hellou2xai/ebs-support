@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getIncidents, getDashboard, getHealth, DetailKind } from "./api";
-import type { IncidentSummary, Dashboard } from "./types";
+import type { IncidentSummary, Dashboard, QueueFilter } from "./types";
 import { Login } from "./components/Login";
 import { PersonaHome } from "./components/PersonaHome";
 import { IncidentQueue } from "./components/IncidentQueue";
@@ -27,6 +27,7 @@ export default function App() {
   const [health, setHealth] = useState<{ mode: string; model: string } | null>(null);
   const [theme, setTheme] = useState<"light" | "dark">(() => (localStorage.getItem("alice-theme") as "light" | "dark") || "light");
   const [detail, setDetail] = useState<{ kind: DetailKind; id: string } | null>(null);
+  const [queueFilter, setQueueFilter] = useState<QueueFilter | null>(null);
 
   useEffect(() => {
     if (!authed) return;
@@ -45,7 +46,8 @@ export default function App() {
   const knownIds = new Set(incidents.map(i => i.incident_number));
   const openDetail = (kind: DetailKind, id: string) => setDetail({ kind, id });
   // Switching persona lands on that persona's home dashboard.
-  const changeRole = (r: string) => { setRole(r); setTab("home"); };
+  const changeRole = (r: string) => { setRole(r); setTab("home"); setQueueFilter(null); };
+  const openQueue = (filter: QueueFilter) => { setQueueFilter(filter); setTab("queue"); };
   const logout = () => { localStorage.removeItem("alice-auth"); setAuthed(false); };
 
   return (
@@ -54,8 +56,8 @@ export default function App() {
         <div className="brand">
           <span className="logo-u2x">U2x<span className="ai">AI</span></span>
           <div>
-            <div className="brand-title">Alice AMS Assist</div>
-            <div className="brand-sub">Vertiv · Oracle EBS Application Management Services</div>
+            <div className="brand-title">U2xAI Alice AMS Support</div>
+            <div className="brand-sub">Oracle EBS Application Management Services</div>
           </div>
         </div>
         <div className="topbar-right">
@@ -83,10 +85,11 @@ export default function App() {
         <button className={tab === "observability" ? "active" : ""} onClick={() => setTab("observability")}>Observability</button>
       </nav>
 
-      {tab === "home" && <PersonaHome role={role} onDetail={openDetail} />}
+      {tab === "home" && <PersonaHome role={role} onDetail={openDetail} onOpenQueue={openQueue} />}
       {tab === "queue" && (
         <div className="layout">
-          <IncidentQueue incidents={incidents} selected={selected} onSelect={setSelected} />
+          <IncidentQueue incidents={incidents} selected={selected} onSelect={setSelected}
+            filter={queueFilter} onClearFilter={() => setQueueFilter(null)} />
           {selectedIncident
             ? <IncidentDetail incident={selectedIncident} role={role} onDetail={openDetail} known={knownIds} />
             : <div className="panel empty">Select an incident to see insights and run the agent.</div>}

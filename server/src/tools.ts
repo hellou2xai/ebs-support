@@ -60,33 +60,52 @@ export function incidentObjects(id: string): { label: string; value: string }[] 
   } catch { return []; }
 }
 
+function tierOfRow(r: Row): string {
+  const pat = db.patterns.find(p => p.PATTERN_ID === r.PATTERN_ID);
+  const a = (pat?.AUTO_RESOLVABLE || "").toLowerCase();
+  return a.startsWith("yes") ? "Auto-resolve" : a.startsWith("partial") ? "Assisted" : "Assisted/Escalate";
+}
+
+function mapIncident(r: Row) {
+  return {
+    incident_number: r.INCIDENT_NUMBER,
+    theme: r.BUSINESS_IMPACT_THEME,
+    short_description: r.SHORT_DESCRIPTION,
+    assignment_group: r.ASSIGNMENT_GROUP,
+    value_stream: r.VALUE_STREAM,
+    primary_system: r.PRIMARY_SYSTEM,
+    ebs_module: r.EBS_MODULE,
+    opened_at: r.OPENED_AT,
+    opened_by: r.OPENED_BY,
+    assigned_to: r.ASSIGNED_TO,
+    priority: r.PRIORITY,
+    state: r.STATE,
+    sla_due: r.SLA_DUE,
+    closed_at: r.STATE === "Closed" ? r.CLOSED_AT : "",
+    close_code: r.STATE === "Closed" ? r.CLOSE_CODE : "",
+    invoice_amount: r.INVOICE_AMOUNT,
+    currency: r.CURRENCY,
+    counterparty: r.COUNTERPARTY,
+    counterparty_type: r.COUNTERPARTY_TYPE,
+    counterparty_tier: r.COUNTERPARTY_TIER,
+    financial_band: r.FINANCIAL_BAND,
+    business_flags: r.BUSINESS_FLAGS,
+    tier: tierOfRow(r),
+    recurring: r.RECURRING_FLAG,
+    origin: r.DATA_ORIGIN,
+  };
+}
+
 export const handlers: Record<string, (a: any) => any> = {
   list_open_incidents({ limit }: { limit?: number }) {
-    const open = db.incidents.filter(r => r.STATE !== "Closed");
-    return open.slice(0, limit ?? 50).map(r => ({
-      incident_number: r.INCIDENT_NUMBER,
-      theme: r.BUSINESS_IMPACT_THEME,
-      short_description: r.SHORT_DESCRIPTION,
-      assignment_group: r.ASSIGNMENT_GROUP,
-      value_stream: r.VALUE_STREAM,
-      primary_system: r.PRIMARY_SYSTEM,
-      ebs_module: r.EBS_MODULE,
-      opened_at: r.OPENED_AT,
-      opened_by: r.OPENED_BY,
-      assigned_to: r.ASSIGNED_TO,
-      priority: r.PRIORITY,
-      state: r.STATE,
-      sla_due: r.SLA_DUE,
-      invoice_amount: r.INVOICE_AMOUNT,
-      currency: r.CURRENCY,
-      counterparty: r.COUNTERPARTY,
-      counterparty_type: r.COUNTERPARTY_TYPE,
-      counterparty_tier: r.COUNTERPARTY_TIER,
-      financial_band: r.FINANCIAL_BAND,
-      business_flags: r.BUSINESS_FLAGS,
-      recurring: r.RECURRING_FLAG,
-      origin: r.DATA_ORIGIN,
-    }));
+    return db.incidents.filter(r => r.STATE !== "Closed").slice(0, limit ?? 50).map(mapIncident);
+  },
+
+  list_incidents({ state, limit }: { state?: string; limit?: number }) {
+    let rows = db.incidents;
+    if (state === "open") rows = rows.filter(r => r.STATE !== "Closed");
+    else if (state === "closed") rows = rows.filter(r => r.STATE === "Closed");
+    return rows.slice(0, limit ?? 300).map(mapIncident);
   },
 
   get_incident({ incident_number }: { incident_number: string }) {

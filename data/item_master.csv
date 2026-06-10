@@ -1,70 +1,77 @@
 INVENTORY_ITEM_ID,SEGMENT1,DESCRIPTION,ITEM_CATEGORY,ITEM_TYPE,PRIMARY_UOM_CODE,ORGANIZATION_ID,ORGANIZATION_CODE,INVENTORY_ITEM_STATUS_CODE,CUSTOMER_ORDER_ENABLED_FLAG,SHIPPABLE_ITEM_FLAG,INVOICE_ENABLED_FLAG
-5101,10075597,Liebert IntelliSlot RDU101 Comms Card,Monitoring,FG,Ea,232,USW,Active,Y,Y,Y
 5101,10075597,Liebert IntelliSlot RDU101 Comms Card,Monitoring,FG,Ea,251,APW,Active,Y,Y,Y
+5101,10075597,Liebert IntelliSlot RDU101 Comms Card,Monitoring,FG,Ea,232,USW,Active,Y,Y,Y
 5101,10075597,Liebert IntelliSlot RDU101 Comms Card,Monitoring,FG,Ea,231,USM,Active,Y,Y,Y
-5102,10076460P1,Liebert ITA2 10kW Three-Phase UPS 208V,UPS,FG,Ea,232,USW,Active,Y,Y,Y
+5101,10075597,Liebert IntelliSlot RDU101 Comms Card,Monitoring,FG,Ea,241,EMW,Active,Y,Y,Y
+5101,10075597,Liebert IntelliSlot RDU101 Comms Card,Monitoring,FG,Ea,261,MX1,Active,Y,Y,Y
 5102,10076460P1,Liebert ITA2 10kW Three-Phase UPS 208V,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
-5102,10076460P1,Liebert ITA2 10kW Three-Phase UPS 208V,UPS,FG,Ea,231,USM,Active,Y,Y,Y
-5102,10076460P1,Liebert ITA2 10kW Three-Phase UPS 208V,UPS,FG,Ea,251,APW,Active,Y,Y,Y
-5103,10074710,Vertiv SmartRow 2 Edge Data Centre,Integrated,FG,Ea,251,APW,Active,Y,Y,Y
-5103,10074710,Vertiv SmartRow 2 Edge Data Centre,Integrated,FG,Ea,261,MX1,Active,Y,Y,Y
+5102,10076460P1,Liebert ITA2 10kW Three-Phase UPS 208V,UPS,FG,Ea,232,USW,Active,Y,Y,Y
+5103,10074710,Vertiv SmartRow 2 Edge Data Centre,Integrated,FG,Ea,232,USW,Active,Y,Y,Y
 5103,10074710,Vertiv SmartRow 2 Edge Data Centre,Integrated,FG,Ea,231,USM,Active,Y,Y,Y
+5104,10076238,Liebert ITON CX 600VA UPS,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
 5104,10076238,Liebert ITON CX 600VA UPS,UPS,FG,Ea,251,APW,Active,Y,Y,Y
-5104,10076238,Liebert ITON CX 600VA UPS,UPS,FG,Ea,231,USM,Active,Y,Y,Y
+5104,10076238,Liebert ITON CX 600VA UPS,UPS,FG,Ea,261,MX1,Active,Y,Y,Y
+5104,10076238,Liebert ITON CX 600VA UPS,UPS,FG,Ea,232,USW,Active,Y,Y,Y
+5105,10078669,Vertiv Geist MPH2 Managed Rack PDU,PDU,FG,Ea,231,USM,Active,Y,Y,Y
 5105,10078669,Vertiv Geist MPH2 Managed Rack PDU,PDU,FG,Ea,232,USW,Active,Y,Y,Y
+5105,10078669,Vertiv Geist MPH2 Managed Rack PDU,PDU,FG,Ea,251,APW,Active,Y,Y,Y
 5105,10078669,Vertiv Geist MPH2 Managed Rack PDU,PDU,FG,Ea,241,EMW,Active,Y,Y,Y
-5105,10078669,Vertiv Geist MPH2 Managed Rack PDU,PDU,FG,Ea,261,MX1,Active,Y,Y,Y
-5106,10078286,Vertiv SmartCabinet2-E Integrated Edge Cabinet,Integrated,FG,Ea,261,MX1,Active,Y,Y,Y
 5106,10078286,Vertiv SmartCabinet2-E Integrated Edge Cabinet,Integrated,FG,Ea,241,EMW,Active,Y,Y,Y
-5107,10075284,Liebert CRV In-Row Cooling 35kW,Thermal,FG,Ea,261,MX1,Active,Y,Y,Y
+5106,10078286,Vertiv SmartCabinet2-E Integrated Edge Cabinet,Integrated,FG,Ea,261,MX1,Active,Y,Y,Y
+5107,10075284,Liebert CRV In-Row Cooling 35kW,Thermal,FG,Ea,241,EMW,Active,Y,Y,Y
 5107,10075284,Liebert CRV In-Row Cooling 35kW,Thermal,FG,Ea,251,APW,Active,Y,Y,Y
-5107,10075284,Liebert CRV In-Row Cooling 35kW,Thermal,FG,Ea,231,USM,Active,Y,Y,Y
+5108,10073232,Liebert RDU501 Monitoring Gateway,Monitoring,FG,Ea,251,APW,Active,Y,Y,Y
 5108,10073232,Liebert RDU501 Monitoring Gateway,Monitoring,FG,Ea,261,MX1,Active,Y,Y,Y
+5108,10073232,Liebert RDU501 Monitoring Gateway,Monitoring,FG,Ea,232,USW,Active,Y,Y,Y
+5108,10073232,Liebert RDU501 Monitoring Gateway,Monitoring,FG,Ea,231,USM,Active,Y,Y,Y
 5108,10073232,Liebert RDU501 Monitoring Gateway,Monitoring,FG,Ea,241,EMW,Active,Y,Y,Y
+5109,10078350,Liebert EXM2 100kW Three-Phase UPS,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
 5109,10078350,Liebert EXM2 100kW Three-Phase UPS,UPS,FG,Ea,261,MX1,Active,Y,Y,Y
 5109,10078350,Liebert EXM2 100kW Three-Phase UPS,UPS,FG,Ea,231,USM,Active,Y,Y,Y
+5109,10078350,Liebert EXM2 100kW Three-Phase UPS,UPS,FG,Ea,232,USW,Active,Y,Y,Y
+5109,10078350,Liebert EXM2 100kW Three-Phase UPS,UPS,FG,Ea,251,APW,Active,Y,Y,Y
+5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,261,MX1,Active,Y,Y,Y
+5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,232,USW,Active,Y,Y,Y
+5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,241,EMW,Active,Y,Y,Y
 5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,251,APW,Active,Y,Y,Y
 5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,231,USM,Active,Y,Y,Y
-5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,241,EMW,Active,Y,Y,Y
-5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,232,USW,Active,Y,Y,Y
-5110,10072992,Vertiv VR Rack 42U 800x1200mm,Rack,FG,Ea,261,MX1,Active,Y,Y,Y
 5111,10075310P1,Liebert DSE Free-Cooling 100kW,Thermal,FG,Ea,231,USM,Active,Y,Y,Y
 5111,10075310P1,Liebert DSE Free-Cooling 100kW,Thermal,FG,Ea,241,EMW,Active,Y,Y,Y
-5111,10075310P1,Liebert DSE Free-Cooling 100kW,Thermal,FG,Ea,261,MX1,Active,Y,Y,Y
-5111,10075310P1,Liebert DSE Free-Cooling 100kW,Thermal,FG,Ea,232,USW,Active,Y,Y,Y
-5112,10077452,Vertiv Geist Rack Transfer Switch 1U 20A,Rack,FG,Ea,231,USM,Active,Y,Y,Y
 5112,10077452,Vertiv Geist Rack Transfer Switch 1U 20A,Rack,FG,Ea,241,EMW,Active,Y,Y,Y
+5112,10077452,Vertiv Geist Rack Transfer Switch 1U 20A,Rack,FG,Ea,251,APW,Active,Y,Y,Y
 5112,10077452,Vertiv Geist Rack Transfer Switch 1U 20A,Rack,FG,Ea,261,MX1,Active,Y,Y,Y
+5112,10077452,Vertiv Geist Rack Transfer Switch 1U 20A,Rack,FG,Ea,232,USW,Active,Y,Y,Y
+5113,10072999P1,Liebert GXT5 3000VA Online UPS 2U 120V,UPS,FG,Ea,251,APW,Active,Y,Y,Y
 5113,10072999P1,Liebert GXT5 3000VA Online UPS 2U 120V,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
-5113,10072999P1,Liebert GXT5 3000VA Online UPS 2U 120V,UPS,FG,Ea,261,MX1,Active,Y,Y,Y
-5114,10077173,Vertiv VR Rack 42U 600x1200mm,Rack,FG,Ea,251,APW,Active,Y,Y,Y
-5114,10077173,Vertiv VR Rack 42U 600x1200mm,Rack,FG,Ea,261,MX1,Active,Y,Y,Y
+5113,10072999P1,Liebert GXT5 3000VA Online UPS 2U 120V,UPS,FG,Ea,232,USW,Active,Y,Y,Y
 5114,10077173,Vertiv VR Rack 42U 600x1200mm,Rack,FG,Ea,241,EMW,Active,Y,Y,Y
-5115,10080473,Liebert PSI5 1500VA Line-Interactive UPS 2U,UPS,FG,Ea,232,USW,Active,Y,Y,Y
+5114,10077173,Vertiv VR Rack 42U 600x1200mm,Rack,FG,Ea,251,APW,Active,Y,Y,Y
 5115,10080473,Liebert PSI5 1500VA Line-Interactive UPS 2U,UPS,FG,Ea,231,USM,Active,Y,Y,Y
+5115,10080473,Liebert PSI5 1500VA Line-Interactive UPS 2U,UPS,FG,Ea,261,MX1,Active,Y,Y,Y
 5115,10080473,Liebert PSI5 1500VA Line-Interactive UPS 2U,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
+5115,10080473,Liebert PSI5 1500VA Line-Interactive UPS 2U,UPS,FG,Ea,232,USW,Active,Y,Y,Y
+5116,10077577,Liebert PDX Compact DX Cooling 29kW,Thermal,FG,Ea,261,MX1,Active,Y,Y,Y
+5116,10077577,Liebert PDX Compact DX Cooling 29kW,Thermal,FG,Ea,232,USW,Active,Y,Y,Y
 5116,10077577,Liebert PDX Compact DX Cooling 29kW,Thermal,FG,Ea,231,USM,Active,Y,Y,Y
 5116,10077577,Liebert PDX Compact DX Cooling 29kW,Thermal,FG,Ea,241,EMW,Active,Y,Y,Y
-5116,10077577,Liebert PDX Compact DX Cooling 29kW,Thermal,FG,Ea,261,MX1,Active,Y,Y,Y
-5116,10077577,Liebert PDX Compact DX Cooling 29kW,Thermal,FG,Ea,251,APW,Active,Y,Y,Y
-5116,10077577,Liebert PDX Compact DX Cooling 29kW,Thermal,FG,Ea,232,USW,Active,Y,Y,Y
-5117,10078341P1,Liebert APM2 Modular Three-Phase UPS,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
+5117,10078341P1,Liebert APM2 Modular Three-Phase UPS,UPS,FG,Ea,231,USM,Active,Y,Y,Y
+5117,10078341P1,Liebert APM2 Modular Three-Phase UPS,UPS,FG,Ea,232,USW,Active,Y,Y,Y
 5117,10078341P1,Liebert APM2 Modular Three-Phase UPS,UPS,FG,Ea,261,MX1,Active,Y,Y,Y
-5118,10080388,Vertiv Geist MPH2 Metered Rack PDU,PDU,FG,Ea,261,MX1,Active,Y,Y,Y
+5117,10078341P1,Liebert APM2 Modular Three-Phase UPS,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
+5117,10078341P1,Liebert APM2 Modular Three-Phase UPS,UPS,FG,Ea,251,APW,Active,Y,Y,Y
 5118,10080388,Vertiv Geist MPH2 Metered Rack PDU,PDU,FG,Ea,251,APW,Active,Y,Y,Y
-5118,10080388,Vertiv Geist MPH2 Metered Rack PDU,PDU,FG,Ea,232,USW,Active,Y,Y,Y
 5118,10080388,Vertiv Geist MPH2 Metered Rack PDU,PDU,FG,Ea,231,USM,Active,Y,Y,Y
 5118,10080388,Vertiv Geist MPH2 Metered Rack PDU,PDU,FG,Ea,241,EMW,Active,Y,Y,Y
+5118,10080388,Vertiv Geist MPH2 Metered Rack PDU,PDU,FG,Ea,261,MX1,Active,Y,Y,Y
 5119,10075041P1,Liebert GXT5 1500VA Online UPS 2U,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
-5119,10075041P1,Liebert GXT5 1500VA Online UPS 2U,UPS,FG,Ea,231,USM,Active,Y,Y,Y
 5119,10075041P1,Liebert GXT5 1500VA Online UPS 2U,UPS,FG,Ea,261,MX1,Active,Y,Y,Y
 5119,10075041P1,Liebert GXT5 1500VA Online UPS 2U,UPS,FG,Ea,232,USW,Active,Y,Y,Y
-5120,10073978P1,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS,FG,Ea,231,USM,Active,Y,Y,Y
-5120,10073978P1,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
-5120,10073978P1,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS,FG,Ea,232,USW,Active,Y,Y,Y
+5119,10075041P1,Liebert GXT5 1500VA Online UPS 2U,UPS,FG,Ea,231,USM,Active,Y,Y,Y
+5119,10075041P1,Liebert GXT5 1500VA Online UPS 2U,UPS,FG,Ea,251,APW,Active,Y,Y,Y
 5120,10073978P1,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS,FG,Ea,251,APW,Active,Y,Y,Y
-5121,10080072,Liebert GXT5 External Battery Cabinet 144V 2U,Battery,FG,Ea,251,APW,Active,Y,Y,Y
-5121,10080072,Liebert GXT5 External Battery Cabinet 144V 2U,Battery,FG,Ea,241,EMW,Active,Y,Y,Y
+5120,10073978P1,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS,FG,Ea,241,EMW,Active,Y,Y,Y
+5120,10073978P1,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS,FG,Ea,261,MX1,Active,Y,Y,Y
+5120,10073978P1,Liebert PSI5 3000VA Line-Interactive UPS 2U,UPS,FG,Ea,232,USW,Active,Y,Y,Y
 5121,10080072,Liebert GXT5 External Battery Cabinet 144V 2U,Battery,FG,Ea,231,USM,Active,Y,Y,Y
-5121,10080072,Liebert GXT5 External Battery Cabinet 144V 2U,Battery,FG,Ea,232,USW,Active,Y,Y,Y
 5121,10080072,Liebert GXT5 External Battery Cabinet 144V 2U,Battery,FG,Ea,261,MX1,Active,Y,Y,Y
+5121,10080072,Liebert GXT5 External Battery Cabinet 144V 2U,Battery,FG,Ea,241,EMW,Active,Y,Y,Y

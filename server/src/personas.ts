@@ -41,27 +41,28 @@ export function personaDashboard(role: string) {
     const news = o.filter(i => i.STATE === "New");
     const p1 = o.filter(i => i.PRIORITY === "P1");
     kpis = [
-      { label: "Open incidents", value: o.length },
-      { label: "New / untriaged", value: news.length, tone: "amber" },
-      { label: "P1", value: p1.length, tone: "red" },
-      { label: "Recurring", value: o.filter(i => i.RECURRING_FLAG === "Y").length },
+      { label: "Open incidents", value: o.length, filter: { label: "Open incidents" } },
+      { label: "New / untriaged", value: news.length, tone: "amber", filter: { label: "New / untriaged", state: "New" } },
+      { label: "P1", value: p1.length, tone: "red", filter: { label: "P1", priority: ["P1"] } },
+      { label: "Recurring", value: o.filter(i => i.RECURRING_FLAG === "Y").length, filter: { label: "Recurring", recurring: true } },
     ];
     panels = [
-      { title: "Needs triage (newest first)", type: "incidents", items: news.slice(0, 12).map(lite) },
-      { title: "P1 incidents", type: "incidents", items: p1.slice(0, 8).map(lite) },
+      { title: `Needs triage (newest first) · ${news.length}`, type: "incidents", items: news.slice(0, 12).map(lite) },
+      { title: `P1 incidents · ${p1.length}`, type: "incidents", items: p1.slice(0, 10).map(lite) },
     ];
   } else if (role === "L2 Support Engineer") {
     const auto = o.filter(i => tierOf(i) === "Auto-resolve");
     const assisted = o.filter(i => tierOf(i) === "Assisted");
+    const inprog = o.filter(i => i.STATE === "In Progress");
     kpis = [
-      { label: "In progress", value: o.filter(i => i.STATE === "In Progress").length },
-      { label: "Auto-resolvable", value: auto.length, tone: "green" },
-      { label: "Assisted", value: assisted.length, tone: "amber" },
-      { label: "P1 / P2", value: o.filter(i => i.PRIORITY === "P1" || i.PRIORITY === "P2").length },
+      { label: "In progress", value: inprog.length, filter: { label: "In progress", state: "In Progress" } },
+      { label: "Auto-resolvable", value: auto.length, tone: "green", filter: { label: "Auto-resolvable", tier: ["Auto-resolve"] } },
+      { label: "Assisted", value: assisted.length, tone: "amber", filter: { label: "Assisted", tier: ["Assisted"] } },
+      { label: "P1 / P2", value: o.filter(i => i.PRIORITY === "P1" || i.PRIORITY === "P2").length, filter: { label: "P1 / P2", priority: ["P1", "P2"] } },
     ];
     panels = [
-      { title: "Quick wins (auto-resolvable)", type: "incidents", items: auto.slice(0, 10).map(lite) },
-      { title: "Needs your hands (assisted)", type: "incidents", items: assisted.slice(0, 10).map(lite) },
+      { title: `Quick wins (auto-resolvable) · ${auto.length}`, type: "incidents", items: auto.slice(0, 12).map(lite) },
+      { title: `Needs your hands (assisted) · ${assisted.length}`, type: "incidents", items: assisted.slice(0, 12).map(lite) },
     ];
   } else if (role === "L3 SME") {
     const escalate = o.filter(i => tierOf(i) === "Assisted/Escalate");
@@ -71,14 +72,14 @@ export function personaDashboard(role: string) {
       count: db.incidents.filter(i => i.ROOT_CAUSE_ID === r.RCA_ID).length,
     })).sort((a, b) => b.count - a.count).slice(0, 8);
     kpis = [
-      { label: "Escalated to L3", value: escalate.length, tone: "red" },
+      { label: "Escalated to L3", value: escalate.length, tone: "red", filter: { label: "Escalated to L3", tier: ["Assisted/Escalate"] } },
       { label: "Distinct root causes", value: db.rca.length },
       { label: "Top problem recurs", value: problems[0]?.count ?? 0, tone: "amber" },
       { label: "Permanent fixes open", value: db.rca.length, tone: "green" },
     ];
     panels = [
-      { title: "Recurring problems to fix at source", type: "rcas", items: problems },
-      { title: "Escalations", type: "incidents", items: escalate.slice(0, 10).map(lite) },
+      { title: `Recurring problems to fix at source · ${problems.length}`, type: "rcas", items: problems },
+      { title: `Escalations · ${escalate.length}`, type: "incidents", items: escalate.slice(0, 12).map(lite) },
     ];
   } else if (role === "Finance Controller") {
     const fin = o.filter(i => i.EBS_MODULE === "AR" || i.EBS_MODULE === "AP").filter(i => i.INVOICE_AMOUNT);
@@ -87,13 +88,13 @@ export function personaDashboard(role: string) {
     const highVal = fin.filter(i => i.FINANCIAL_BAND === "High" || i.FINANCIAL_BAND === "Critical");
     const critSup = fin.filter(i => (i.BUSINESS_FLAGS || "").includes("Critical component supplier") || (i.BUSINESS_FLAGS || "").includes("Single-source"));
     kpis = [
-      { label: "Total exposure", value: `$${Math.round(exposure).toLocaleString()}`, tone: "red" },
-      { label: "High-value invoices", value: highVal.length, tone: "amber" },
-      { label: "Critical-supplier", value: critSup.length, tone: "red" },
-      { label: "Quarter-close risk", value: fin.filter(i => (i.BUSINESS_FLAGS || "").includes("Quarter-close")).length, tone: "amber" },
+      { label: "Total exposure", value: `$${Math.round(exposure).toLocaleString()}`, tone: "red", filter: { label: "AR/AP exposure", module: ["AR", "AP"] } },
+      { label: "High-value invoices", value: highVal.length, tone: "amber", filter: { label: "High-value invoices", band: ["High", "Critical"] } },
+      { label: "Critical-supplier", value: critSup.length, tone: "red", filter: { label: "Critical-supplier", flags: "Critical component supplier|Single-source" } },
+      { label: "Quarter-close risk", value: fin.filter(i => (i.BUSINESS_FLAGS || "").includes("Quarter-close")).length, tone: "amber", filter: { label: "Quarter-close risk", flags: "Quarter-close" } },
     ];
     panels = [
-      { title: "Highest value at risk", type: "incidents", items: fin.slice(0, 12).map(lite) },
+      { title: `Highest value at risk · ${fin.length}`, type: "incidents", items: fin.slice(0, 12).map(lite) },
       { title: "AR vs AP", type: "bars", items: [
         { label: "AR (AutoInvoice)", value: o.filter(i => i.EBS_MODULE === "AR").length },
         { label: "AP (Payables)", value: o.filter(i => i.EBS_MODULE === "AP").length },
@@ -102,13 +103,13 @@ export function personaDashboard(role: string) {
   } else if (role === "Change Approver") {
     const staged = o.filter(i => tierOf(i) !== "Auto-resolve");
     kpis = [
-      { label: "Awaiting approval", value: staged.length, tone: "amber" },
+      { label: "Awaiting approval", value: staged.length, tone: "amber", filter: { label: "Awaiting approval", tier: ["Assisted", "Assisted/Escalate"] } },
       { label: "PROD data fixes", value: o.filter(i => i.RESOLUTION_TYPE?.includes("Data fix")).length, tone: "red" },
-      { label: "Auto (no approval)", value: o.filter(i => tierOf(i) === "Auto-resolve").length, tone: "green" },
-      { label: "P1 / P2 staged", value: staged.filter(i => i.PRIORITY === "P1" || i.PRIORITY === "P2").length },
+      { label: "Auto (no approval)", value: o.filter(i => tierOf(i) === "Auto-resolve").length, tone: "green", filter: { label: "Auto (no approval)", tier: ["Auto-resolve"] } },
+      { label: "P1 / P2 staged", value: staged.filter(i => i.PRIORITY === "P1" || i.PRIORITY === "P2").length, filter: { label: "P1 / P2 staged", priority: ["P1", "P2"], tier: ["Assisted", "Assisted/Escalate"] } },
     ];
     panels = [
-      { title: "Actions awaiting your approval", type: "incidents", items: staged.slice(0, 14).map(lite) },
+      { title: `Actions awaiting your approval · ${staged.length}`, type: "incidents", items: staged.slice(0, 14).map(lite) },
     ];
   } else if (role === "AMS Service Manager") {
     const byStream: Record<string, number> = {};
@@ -118,9 +119,9 @@ export function personaDashboard(role: string) {
     const patterns = db.patterns.map(p => ({ pattern_id: p.PATTERN_ID, signature: p.FAILURE_SIGNATURE, count: Number(p.OCCURRENCE_COUNT), auto: p.AUTO_RESOLVABLE }))
       .sort((a, b) => b.count - a.count).slice(0, 8);
     kpis = [
-      { label: "Open incidents", value: o.length },
-      { label: "Auto-resolution rate", value: `${autoRate}%`, tone: "green" },
-      { label: "Recurring", value: o.filter(i => i.RECURRING_FLAG === "Y").length, tone: "amber" },
+      { label: "Open incidents", value: o.length, filter: { label: "Open incidents" } },
+      { label: "Auto-resolution rate", value: `${autoRate}%`, tone: "green", filter: { label: "Auto-resolvable", tier: ["Auto-resolve"] } },
+      { label: "Recurring", value: o.filter(i => i.RECURRING_FLAG === "Y").length, tone: "amber", filter: { label: "Recurring", recurring: true } },
       { label: "AI spend (session)", value: `$${usage.totalCost.toFixed(4)}` },
     ];
     panels = [

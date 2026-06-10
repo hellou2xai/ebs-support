@@ -19,8 +19,23 @@ export interface IncidentSummary {
   counterparty_tier: string;
   financial_band: string;
   business_flags: string;
+  tier: string;
+  closed_at: string;
+  close_code: string;
   recurring: string;
   origin: string;
+}
+
+// Client-side queue filter, set by persona KPI clicks.
+export interface QueueFilter {
+  label: string;
+  state?: string;
+  tier?: string[];
+  priority?: string[];
+  recurring?: boolean;
+  module?: string[];
+  band?: string[];
+  flags?: string; // pipe-separated substrings, any match
 }
 
 export interface Bundle {
